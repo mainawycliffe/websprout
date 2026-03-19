@@ -16,7 +16,7 @@ export default function InstructionPanel({
   feedback,
 }: InstructionPanelProps) {
   return (
-    <Card className="border-2 border-primary-light/30">
+    <Card className="border border-primary/20">
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-text">{instruction.heading}</h2>
         <p className="text-base text-text-muted leading-relaxed">
@@ -24,7 +24,7 @@ export default function InstructionPanel({
         </p>
 
         {instruction.analogy && (
-          <div className="bg-warning-light/20 border border-warning-light/40 rounded-[var(--radius-md)] px-4 py-3">
+          <div className="bg-warning-light/20 border border-warning-light/40 rounded-md px-4 py-3">
             <p className="text-sm text-text">
               <span className="font-semibold">Think of it this way: </span>
               {instruction.analogy}
@@ -39,7 +39,7 @@ export default function InstructionPanel({
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              className={`rounded-[var(--radius-md)] px-4 py-3 text-sm font-medium ${
+              className={`rounded-md px-4 py-3 text-sm font-medium ${
                 feedback.valid
                   ? "bg-success-light/20 border border-success-light/40 text-success"
                   : "bg-error-light/20 border border-error-light/40 text-error"
@@ -56,7 +56,7 @@ export default function InstructionPanel({
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="bg-secondary-light/20 border border-secondary-light/40 rounded-[var(--radius-md)] px-4 py-3"
+              className="bg-secondary-light/20 border border-secondary-light/40 rounded-md px-4 py-3"
             >
               <p className="text-sm text-secondary">
                 <span className="font-semibold">Hint: </span>

@@ -10,7 +10,7 @@ interface HeaderProps {
 
 export default function Header({ title, backHref, rightContent }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-40 bg-card/80 backdrop-blur-sm border-b border-border">
+    <header className="sticky top-0 z-40 bg-card/70 backdrop-blur-md border-b border-border/50">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
         <div className="flex items-center gap-3">
           {backHref && (
@@ -24,7 +24,7 @@ export default function Header({ title, backHref, rightContent }: HeaderProps) {
           )}
           <Link href="/" className="flex items-center gap-2">
             <span className="text-2xl">&#127793;</span>
-            <span className="font-bold text-lg text-primary">
+            <span className="font-bold text-lg bg-linear-to-r from-(--color-gradient-start) to-(--color-gradient-end) bg-clip-text text-transparent">
               {title ?? "WebSprout"}
             </span>
           </Link>

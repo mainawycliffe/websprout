@@ -3,3 +3,57 @@
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
+
+## Overview
+
+WebSprout is an interactive, browser-based learning tool that teaches HTML and CSS to complete beginners through visual, hands-on exercises. No backend — all progress is persisted client-side via IndexedDB.
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router, React Compiler enabled)
+- **UI:** React 19, Tailwind CSS v4 (inline `@theme`), Motion (`motion/react`)
+- **State:** Zustand stores (`src/stores/`)
+- **Code Editor:** CodeMirror 6 (`@uiw/react-codemirror`)
+- **3D:** Three.js + React Three Fiber + Drei (box-model module only)
+- **Persistence:** IndexedDB via `idb` wrapper
+- **Drag & Drop:** `@dnd-kit/core` + `@dnd-kit/sortable`
+
+## Architecture
+
+- App Router with `src/` directory structure
+- Route group `(modules)` for learning module pages
+- All interactive components are client components (`"use client"`)
+- Lesson content defined as typed TypeScript objects in `src/content/`
+- Custom hooks in `src/hooks/` for lesson progress, code validation, IndexedDB
+
+## Component Organization
+
+```text
+src/components/
+  ui/          — Primitives: Button, Card, Slider, ProgressIndicator, StepDots, Tooltip
+  layout/      — Header, InstructionPanel, LessonStepper, SplitPane
+  editor/      — CodeEditor, GapFillEditor, HtmlPreview, SplitPane
+  tag-builder/ — TagBuilderLesson, TagVisualizer
+  box-model/   — BoxModelLesson, BoxModelCanvas, BoxModel2D, BoxLayer, ValueControls, TargetChallenge
+```
+
+## Styling
+
+- **Tailwind CSS v4** with design tokens defined via `@theme inline` in `src/app/globals.css`
+- No CSS modules — utility-first approach only
+- Animations via `motion/react` (Framer Motion)
+- Custom keyframe animations in `globals.css` for domain-specific effects
+- Fonts: Geist Sans + Geist Mono (loaded via `next/font/google` in root layout)
+- HeroUI-inspired visual design: gradient accents (blue-to-violet), generous rounding, glassmorphism header, cool neutral palette
+
+## Code Style
+
+- TypeScript strict mode
+- Types defined in `src/types/` (lesson.ts, tag-builder.ts, box-model.ts)
+- Prefer named exports for types, default exports for components
+- Keep component interfaces stable — avoid breaking prop changes
+
+## Testing
+
+- No test framework currently configured
+- Validation logic lives in `src/lib/` (html-parser, tag-validator, lesson-engine, box-model-calc)

@@ -17,6 +17,10 @@ export default function ProgressIndicator({
 }: ProgressIndicatorProps) {
   const height = size === "sm" ? "h-2" : "h-3";
   const percentage = Math.round(progress * 100);
+  const isDefaultColor = color === "var(--color-primary)";
+  const barStyle = isDefaultColor
+    ? { backgroundImage: "linear-gradient(to right, var(--color-gradient-start), var(--color-gradient-end))" }
+    : { backgroundColor: color };
 
   return (
     <div className="flex flex-col gap-1">
@@ -28,7 +32,7 @@ export default function ProgressIndicator({
       <div className={`w-full ${height} bg-border rounded-full overflow-hidden`}>
         <motion.div
           className={`${height} rounded-full`}
-          style={{ backgroundColor: color }}
+          style={barStyle}
           initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}
           transition={{ duration: 0.5, ease: "easeOut" }}

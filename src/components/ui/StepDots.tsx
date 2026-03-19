@@ -28,10 +28,10 @@ export default function StepDots({
             whileHover={{ scale: 1.3 }}
             whileTap={{ scale: 0.9 }}
             className={`
-              w-3 h-3 rounded-full transition-colors cursor-pointer
-              ${isActive ? "bg-primary ring-2 ring-primary-light ring-offset-2" : ""}
+              w-3.5 h-3.5 rounded-full transition-colors cursor-pointer
+              ${isActive ? "bg-linear-to-r from-(--color-gradient-start) to-(--color-gradient-end) ring-2 ring-primary-light ring-offset-2 ring-offset-bg" : ""}
               ${isCompleted && !isActive ? "bg-success" : ""}
-              ${!isActive && !isCompleted ? "bg-border" : ""}
+              ${!isActive && !isCompleted ? "bg-border/80" : ""}
             `}
             aria-label={`Step ${i + 1}${isCompleted ? " (completed)" : ""}${isActive ? " (current)" : ""}`}
           />

@@ -42,7 +42,7 @@ export default function Home() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-text mb-3">
+          <h1 className="text-4xl font-bold bg-linear-to-r from-(--color-gradient-start) to-(--color-gradient-end) bg-clip-text text-transparent mb-3">
             Learn HTML & CSS
           </h1>
           <p className="text-lg text-text-muted max-w-xl mx-auto">
@@ -60,7 +60,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: i * 0.15 }}
             >
               <Link href={`/${mod.slug}`}>
-                <Card hoverable className="h-full border-2 border-transparent hover:border-primary-light/40">
+                <Card hoverable className="h-full border-2 border-transparent hover:border-primary/30">
                   <div className="flex flex-col gap-4">
                     <div className="flex items-start justify-between">
                       <span className="text-4xl">{mod.icon}</span>

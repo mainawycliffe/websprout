@@ -19,8 +19,10 @@ export default function Card({
     <motion.div
       whileHover={hoverable ? { y: -4, boxShadow: "var(--shadow-card-hover)" } : undefined}
       className={`
-        bg-card rounded-[var(--radius-lg)] p-6
+        bg-card rounded-[var(--radius-xl)] p-6
+        border border-border/60
         shadow-[var(--shadow-card)]
+        transition-all duration-200
         ${hoverable ? "cursor-pointer" : ""}
         ${className}
       `}

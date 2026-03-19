@@ -39,7 +39,7 @@ export default function TagBuilderPage() {
       >
         <div className="flex items-center gap-3 mb-2">
           <span className="text-3xl">{mod.icon}</span>
-          <h1 className="text-3xl font-bold text-text">{mod.title}</h1>
+          <h1 className="text-3xl font-bold bg-linear-to-r from-(--color-gradient-start) to-(--color-gradient-end) bg-clip-text text-transparent">{mod.title}</h1>
         </div>
         <p className="text-text-muted">{mod.description}</p>
       </motion.div>
