@@ -15,6 +15,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Make it relatable**: Use analogies drawn from everyday life — school, shipping packages, concerts, phone apps — so abstract concepts feel familiar before the technical explanation.
 - **Include doc links**: Reference MDN Web Docs for every HTML element, attribute, and CSS property. Conform to web standards — teach the *right* way from the start.
 - **Add info boxes**: Use "Web Standard" boxes for accessibility, spec conformance, and browser behavior. Use "Tip" boxes for common mistakes and practical gotchas — placed on practice steps where students are most likely to hit the issue.
+- **Include a full example lesson**: Every module should end with a capstone lesson that combines all taught concepts into building something recognizable and complete. Students should walk away having built a real thing, not just practiced isolated skills.
+- **Include codelabs**: Every module must include step-by-step codelab lessons that guide students through building real projects in a code editor and browser. Codelabs bridge the gap between the interactive tool and real-world development. Assume Linux, no build tools (just HTML/CSS files opened in a browser). Don't assume prior knowledge — explain every terminal command and editor action. End each codelab with a free-edit checkpoint. Progressive difficulty: start simple, build on previous codelabs.
 
 ## Overview
 

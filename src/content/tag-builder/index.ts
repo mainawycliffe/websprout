@@ -8,6 +8,8 @@ import { lesson as firstCssRule } from "./06-first-css-rule";
 import { lesson as propertiesValues } from "./07-properties-values";
 import { lesson as selectors } from "./08-selectors";
 import { lesson as combiningHtmlCss } from "./09-combining-html-css";
+import { lesson as fullPage } from "./10-full-page";
+import { lesson as tagCodelab } from "./11-codelab";
 
 export const tagBuilderLessons: Lesson[] = [
   firstTag,
@@ -19,4 +21,6 @@ export const tagBuilderLessons: Lesson[] = [
   propertiesValues,
   selectors,
   combiningHtmlCss,
+  fullPage,
+  tagCodelab,
 ];
