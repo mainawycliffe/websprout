@@ -17,6 +17,30 @@ const TAG_COLORS: Record<string, { bg: string; border: string }> = {
   span: { bg: "#FCE7F3", border: "#EC4899" },
   a: { bg: "#CFFAFE", border: "#06B6D4" },
   style: { bg: "#F3E8FF", border: "#A855F7" },
+  // Table tags
+  table: { bg: "#FFF7ED", border: "#EA580C" },
+  tr: { bg: "#FFEDD5", border: "#F97316" },
+  th: { bg: "#FED7AA", border: "#FB923C" },
+  td: { bg: "#FFEDD5", border: "#FDBA74" },
+  thead: { bg: "#FFF7ED", border: "#EA580C" },
+  tbody: { bg: "#FFF7ED", border: "#F97316" },
+  caption: { bg: "#FEF3C7", border: "#D97706" },
+  // Form tags
+  form: { bg: "#F0FDFA", border: "#0D9488" },
+  input: { bg: "#CCFBF1", border: "#14B8A6" },
+  label: { bg: "#D1FAE5", border: "#059669" },
+  button: { bg: "#A7F3D0", border: "#10B981" },
+  select: { bg: "#CCFBF1", border: "#0D9488" },
+  option: { bg: "#F0FDFA", border: "#14B8A6" },
+  textarea: { bg: "#CCFBF1", border: "#14B8A6" },
+  // Semantic tags
+  header: { bg: "#EEF2FF", border: "#4F46E5" },
+  nav: { bg: "#E0E7FF", border: "#6366F1" },
+  main: { bg: "#EDE9FE", border: "#7C3AED" },
+  section: { bg: "#F5F3FF", border: "#8B5CF6" },
+  article: { bg: "#FAF5FF", border: "#A855F7" },
+  aside: { bg: "#FDF4FF", border: "#C026D3" },
+  footer: { bg: "#EEF2FF", border: "#4F46E5" },
   default: { bg: "#F1F5F9", border: "#94A3B8" },
 };
 

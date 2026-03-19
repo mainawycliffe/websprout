@@ -6,7 +6,7 @@ export const lesson: Lesson = {
   title: "Build a Profile Page",
   description:
     "Combine everything you've learned — tags, nesting, attributes, and CSS — to build a complete personal profile page from scratch.",
-  order: 10,
+  order: 13,
   steps: [
     {
       id: "full-page-intro",

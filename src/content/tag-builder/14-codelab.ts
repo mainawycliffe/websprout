@@ -6,7 +6,7 @@ export const lesson: Lesson = {
   title: "Codelab: Your First Webpage",
   description:
     "Step-by-step guide to creating a real HTML & CSS webpage on your own computer.",
-  order: 11,
+  order: 14,
   steps: [
     {
       id: "codelab-setup",
