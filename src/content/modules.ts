@@ -1,6 +1,7 @@
 import type { Module } from "@/types/lesson";
 import { tagBuilderLessons } from "./tag-builder";
 import { boxModelLessons } from "./box-model";
+import { displayLayoutLessons } from "./display-layout";
 
 export const modules: Module[] = [
   {
@@ -22,6 +23,16 @@ export const modules: Module[] = [
     icon: "\u{1F4D0}",
     color: "#8B5CF6",
     lessons: boxModelLessons,
+  },
+  {
+    id: "display-layout",
+    title: "Display & Layout",
+    description:
+      "Learn how the browser arranges elements. Master block, inline, flexbox, and CSS grid to build real page layouts.",
+    slug: "display-layout",
+    icon: "\u{1F9E9}",
+    color: "#EC4899",
+    lessons: displayLayoutLessons,
   },
 ];
 
