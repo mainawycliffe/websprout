@@ -11,7 +11,6 @@ import InstructionPanel from "@/components/layout/InstructionPanel";
 import CodeEditor from "@/components/editor/CodeEditor";
 import GapFillEditor from "@/components/editor/GapFillEditor";
 import HtmlPreview from "@/components/editor/HtmlPreview";
-import SplitPane from "@/components/editor/SplitPane";
 import TagVisualizer from "@/components/tag-builder/TagVisualizer";
 
 interface TagBuilderLessonProps {
@@ -186,69 +185,57 @@ export default function TagBuilderLesson({ lesson }: TagBuilderLessonProps) {
             transition={{ duration: 0.3 }}
           >
             {step.type === "explanation" && demoCode && (
-              <SplitPane
-                left={
-                  <CodeEditor
-                    value={demoCode}
-                    language={(step.config as ExplanationConfig).demoLanguage ?? "html"}
-                    readOnly
-                  />
-                }
-                right={
-                  (step.config as ExplanationConfig).demoLanguage === "css" ? (
-                    <div className="rounded-[var(--radius-md)] overflow-hidden shadow-card">
-                      <div className="flex items-center px-4 py-2 bg-bg-warm text-xs text-text-muted border-b border-border">
-                        CSS PREVIEW
-                      </div>
-                      <div className="bg-white p-4 min-h-[120px]">
-                        <pre className="text-sm font-mono text-text whitespace-pre-wrap">{demoCode}</pre>
-                      </div>
+              <div className="flex flex-col gap-4">
+                <CodeEditor
+                  value={demoCode}
+                  language={(step.config as ExplanationConfig).demoLanguage ?? "html"}
+                  readOnly
+                />
+                {(step.config as ExplanationConfig).demoLanguage === "css" ? (
+                  <div className="rounded-[var(--radius-md)] overflow-hidden shadow-card">
+                    <div className="flex items-center px-4 py-2 bg-bg-warm text-xs text-text-muted border-b border-border">
+                      CSS PREVIEW
                     </div>
-                  ) : (
-                    <div className="flex flex-col gap-4">
-                      <TagVisualizer tree={demoTree} />
-                      <HtmlPreview html={demoCode} />
+                    <div className="bg-white p-4 min-h-[120px]">
+                      <pre className="text-sm font-mono text-text whitespace-pre-wrap">{demoCode}</pre>
                     </div>
-                  )
-                }
-              />
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <TagVisualizer tree={demoTree} />
+                    <HtmlPreview html={demoCode} />
+                  </div>
+                )}
+              </div>
             )}
 
             {step.type === "gap-fill" && step.config.type === "gap-fill" && (
-              <SplitPane
-                left={
-                  <GapFillEditor
-                    template={(step.config as GapFillConfig).template}
-                    gaps={(step.config as GapFillConfig).gaps}
-                    gapValues={gapValues}
-                    onGapChange={handleGapChange}
-                  />
-                }
-                right={
-                  <div className="flex flex-col gap-4">
-                    <TagVisualizer tree={parsedTree} />
-                    <HtmlPreview html={displayCode} />
-                  </div>
-                }
-              />
+              <div className="flex flex-col gap-4">
+                <GapFillEditor
+                  template={(step.config as GapFillConfig).template}
+                  gaps={(step.config as GapFillConfig).gaps}
+                  gapValues={gapValues}
+                  onGapChange={handleGapChange}
+                />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <TagVisualizer tree={parsedTree} />
+                  <HtmlPreview html={displayCode} />
+                </div>
+              </div>
             )}
 
             {step.type === "free-edit" && step.config.type === "free-edit" && (
-              <SplitPane
-                left={
-                  <CodeEditor
-                    value={code || (step.config as FreeEditConfig).starterCode}
-                    language={(step.config as FreeEditConfig).language}
-                    onChange={handleCodeChange}
-                  />
-                }
-                right={
-                  <div className="flex flex-col gap-4">
-                    <TagVisualizer tree={parsedTree} />
-                    <HtmlPreview html={displayCode} />
-                  </div>
-                }
-              />
+              <div className="flex flex-col gap-4">
+                <CodeEditor
+                  value={code || (step.config as FreeEditConfig).starterCode}
+                  language={(step.config as FreeEditConfig).language}
+                  onChange={handleCodeChange}
+                />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <TagVisualizer tree={parsedTree} />
+                  <HtmlPreview html={displayCode} />
+                </div>
+              </div>
             )}
           </motion.div>
         </AnimatePresence>

@@ -12,8 +12,18 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "The anatomy of a CSS rule",
-        body: 'A CSS rule has two parts: a SELECTOR (which elements to style) and a DECLARATION BLOCK (what styles to apply). The declaration block is wrapped in curly braces { } and contains property: value pairs ending with semicolons.',
-        analogy: "A CSS rule is like a mail instruction: the selector is the address (who gets the mail), and the declaration block is the package contents (what they receive).",
+        body: 'A CSS rule has two parts: a SELECTOR (which elements to style) and a DECLARATION BLOCK (what styles to apply). This structure exists because it would be impractical to style each element individually — imagine writing colors and sizes for every single paragraph on a 1000-paragraph website. Instead, CSS lets you write one rule that applies everywhere. The declaration block uses curly braces { } and property: value pairs ending with semicolons.',
+        analogy: "Think of a company dress code: 'All employees in the marketing department must wear blue shirts.' The selector is 'marketing department' (who), and the declaration is 'blue shirts' (what). One rule affects everyone who matches — that's the power of CSS selectors.",
+        infoBoxes: [
+          {
+            variant: "standard",
+            body: "A CSS rule has two parts: a selector (which elements to style) and a declaration block (how to style them). This selector-based approach is what makes CSS powerful — one rule can style hundreds of elements.",
+          },
+        ],
+        docLinks: [
+          { label: "CSS syntax", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax", type: "css-concept" },
+          { label: "CSS selectors", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors", type: "css-selector" },
+        ],
       },
       config: {
         type: "explanation",
@@ -29,6 +39,15 @@ export const lesson: Lesson = {
       instruction: {
         heading: "Complete a CSS rule",
         body: "Fill in the selector to target all paragraphs, and the property to change their color.",
+        infoBoxes: [
+          {
+            variant: "tip",
+            body: "Every CSS declaration must end with a semicolon. A missing semicolon silently breaks all declarations that follow it in the same rule.",
+          },
+        ],
+        docLinks: [
+          { label: "color", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/color", type: "css-property" },
+        ],
       },
       config: {
         type: "gap-fill",
@@ -49,7 +68,7 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Don't forget the semicolons!",
-        body: "Each property: value pair must end with a semicolon (;). Missing semicolons are one of the most common CSS mistakes. The curly braces { } wrap around ALL the declarations for one selector.",
+        body: "Each property: value pair must end with a semicolon (;). Semicolons are how the browser knows where one instruction ends and the next begins — without them, 'color: blue font-size: 18px' becomes gibberish. This is one of the most common CSS bugs, even for experienced developers.",
       },
       config: {
         type: "explanation",
@@ -64,7 +83,7 @@ export const lesson: Lesson = {
       type: "free-edit",
       instruction: {
         heading: "Write a CSS rule from scratch",
-        body: "Write a CSS rule that makes all h1 elements have a blue color. Remember: selector { property: value; }",
+        body: "Write a CSS rule that makes all h1 elements have a blue color. This is the same pattern used to style every website you visit — from the red headings on YouTube to the blue links on Google. The formula is always: selector { property: value; }",
       },
       config: {
         type: "free-edit",

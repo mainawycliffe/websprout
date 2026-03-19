@@ -4,6 +4,18 @@
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
+## Primary Objective
+
+**The #1 goal of WebSprout is to teach and ensure students grasp the basics and fundamentals of web development.** Every feature, lesson, and UI decision must serve this objective. Content should not just show syntax — it should explain *why* things work the way they do, connect concepts to real-world browser behavior, and reinforce web standards conformance. When in doubt, prioritize understanding over coverage.
+
+### Content Guidelines
+
+- **Explain why it exists**: Every concept should include its purpose — *why* was it created, *what problem* does it solve? Don't just show how to use a tag; explain why the web needs it.
+- **Give real-world examples**: Connect concepts to websites and apps students already know (Google, YouTube, Wikipedia, Amazon, Instagram, etc.). Students should recognize these patterns in the wild.
+- **Make it relatable**: Use analogies drawn from everyday life — school, shipping packages, concerts, phone apps — so abstract concepts feel familiar before the technical explanation.
+- **Include doc links**: Reference MDN Web Docs for every HTML element, attribute, and CSS property. Conform to web standards — teach the *right* way from the start.
+- **Add info boxes**: Use "Web Standard" boxes for accessibility, spec conformance, and browser behavior. Use "Tip" boxes for common mistakes and practical gotchas — placed on practice steps where students are most likely to hit the issue.
+
 ## Overview
 
 WebSprout is an interactive, browser-based learning tool that teaches HTML and CSS to complete beginners through visual, hands-on exercises. No backend — all progress is persisted client-side via IndexedDB.

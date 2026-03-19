@@ -33,11 +33,25 @@ export type StepType =
   | "slider-explore"
   | "challenge";
 
+export interface DocLink {
+  label: string;
+  url: string;
+  type?: "html-element" | "html-attribute" | "css-property" | "css-selector" | "css-concept" | "html-concept";
+}
+
+export interface InfoBox {
+  variant: "standard" | "tip";
+  title?: string;
+  body: string;
+}
+
 export interface StepInstruction {
   heading: string;
   body: string;
   analogy?: string;
   highlightElements?: string[];
+  docLinks?: DocLink[];
+  infoBoxes?: InfoBox[];
 }
 
 export interface GapFillConfig {

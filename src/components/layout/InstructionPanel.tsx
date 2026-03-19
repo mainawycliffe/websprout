@@ -3,6 +3,8 @@
 import { AnimatePresence, motion } from "motion/react";
 import type { StepInstruction } from "@/types/lesson";
 import Card from "@/components/ui/Card";
+import DocLinks from "@/components/ui/DocLinks";
+import InfoBox from "@/components/ui/InfoBox";
 
 interface InstructionPanelProps {
   instruction: StepInstruction;
@@ -30,6 +32,16 @@ export default function InstructionPanel({
               {instruction.analogy}
             </p>
           </div>
+        )}
+
+        {instruction.infoBoxes && instruction.infoBoxes.length > 0 &&
+          instruction.infoBoxes.map((box, i) => (
+            <InfoBox key={`${box.variant}-${i}`} box={box} />
+          ))
+        }
+
+        {instruction.docLinks && instruction.docLinks.length > 0 && (
+          <DocLinks links={instruction.docLinks} />
         )}
 
         <AnimatePresence mode="wait">

@@ -12,8 +12,17 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Six sizes of headings",
-        body: "HTML has six heading levels: h1 (biggest) through h6 (smallest). Use h1 for the main title, h2 for sections, and so on.",
-        analogy: "Think of headings like a book: h1 is the book title, h2 is a chapter title, h3 is a section within a chapter.",
+        body: "HTML has six heading levels: h1 (biggest) through h6 (smallest). They exist to create a clear content hierarchy — just like a Wikipedia article has a title, section headings, and sub-sections. Search engines like Google use your headings to understand what your page is about, which directly affects how it appears in search results.",
+        analogy: "Open any Wikipedia article — the page title is an h1, section titles like 'Early life' or 'Career' are h2s, and sub-sections under those are h3s. This structure lets both readers and search engines quickly scan what the page covers.",
+        infoBoxes: [
+          {
+            variant: "standard",
+            body: "Headings create a document outline. Screen readers let users jump between heading levels to navigate — skipping levels (h1 to h3) breaks this accessibility feature. Always use headings in order.",
+          },
+        ],
+        docLinks: [
+          { label: "<h1>-<h6> headings", url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements", type: "html-element" },
+        ],
       },
       config: {
         type: "explanation",
@@ -48,7 +57,16 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Paragraphs add body text",
-        body: "The <p> tag is for regular text content. Browsers add spacing between paragraphs automatically.",
+        body: "The <p> tag wraps regular text into a paragraph. It exists because reading a wall of unbroken text is exhausting — paragraphs create breathing room. Browsers automatically add spacing above and below each <p> tag, just like how a Medium article or blog post has visible gaps between paragraphs to make reading comfortable.",
+        infoBoxes: [
+          {
+            variant: "standard",
+            body: "The <p> tag represents a paragraph of text. Browsers automatically add spacing above and below paragraphs — this is the browser's default stylesheet at work.",
+          },
+        ],
+        docLinks: [
+          { label: "<p> paragraph", url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p", type: "html-element" },
+        ],
       },
       config: {
         type: "explanation",
@@ -63,7 +81,13 @@ export const lesson: Lesson = {
       type: "free-edit",
       instruction: {
         heading: "Build a mini page",
-        body: "Write an h1 title and at least one paragraph below it. Make it about anything you like!",
+        body: "Write an h1 title and at least one paragraph below it. You're building the same structure used by every blog post, news article, and product page on the web — a clear title followed by body text.",
+        infoBoxes: [
+          {
+            variant: "tip",
+            body: "Only use one <h1> per page. It represents the single main topic. Use <h2> for sub-sections, <h3> for sub-sub-sections.",
+          },
+        ],
       },
       config: {
         type: "free-edit",

@@ -12,9 +12,18 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Tags are containers",
-        body: "An HTML tag is like a labeled box. You open it, put something inside, and close it. The browser reads the label to know what kind of content is inside.",
+        body: "HTML tags exist because browsers need a way to understand what your content means. Without tags, a browser would just see a wall of text with no structure. An HTML tag wraps your content and labels it — 'this is a heading', 'this is a paragraph' — so the browser, search engines like Google, and screen readers all know how to display and interpret it.",
         analogy:
-          'Imagine a cardboard box with "HEADING" written on the side. Everything you put inside that box gets treated as a heading.',
+          'Think of how a news website like BBC or CNN is structured: the main headline is big and bold, sub-headlines are smaller, and body text is regular-sized. HTML tags are how developers tell the browser which text is which — without them, everything would look the same.',
+        infoBoxes: [
+          {
+            variant: "standard",
+            body: "Every HTML tag has a meaning. <h1> doesn't just make text big — it tells the browser (and screen readers) 'this is the most important heading on the page.' This is called semantic HTML.",
+          },
+        ],
+        docLinks: [
+          { label: "<h1> heading", url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements", type: "html-element" },
+        ],
       },
       config: {
         type: "explanation",
@@ -29,8 +38,11 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Opening and closing",
-        body: 'Every tag has two parts: an opening tag <h1> and a closing tag </h1>. The closing tag has a forward slash / before the tag name. Everything between them is the content.',
+        body: 'Every tag has two parts: an opening tag <h1> and a closing tag </h1>. The closing tag has a forward slash / before the tag name. This pairing exists so the browser knows exactly where your content starts and ends — just like quotation marks in writing tell the reader where a quote begins and finishes.',
         analogy: "The opening tag is like opening the lid of a box, and the closing tag is snapping the lid shut.",
+        docLinks: [
+          { label: "<p> paragraph", url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p", type: "html-element" },
+        ],
       },
       config: {
         type: "explanation",
@@ -46,6 +58,12 @@ export const lesson: Lesson = {
       instruction: {
         heading: "Complete the tag",
         body: 'Type "h1" in both blanks to create a heading tag.',
+        infoBoxes: [
+          {
+            variant: "tip",
+            body: "The opening and closing tag names must match exactly. Forgetting the closing tag is the most common beginner mistake — the browser will guess where to close it, often incorrectly.",
+          },
+        ],
       },
       config: {
         type: "gap-fill",
@@ -107,7 +125,7 @@ export const lesson: Lesson = {
       type: "free-edit",
       instruction: {
         heading: "Write your own!",
-        body: "Now write any HTML tag you like. Try an h1, h2, or p tag with your own text inside.",
+        body: "Now write any HTML tag you like. Try an h1, h2, or p tag with your own text inside. Every webpage you visit — from Google's search results to your favorite social media — is built with these exact same tags.",
       },
       config: {
         type: "free-edit",

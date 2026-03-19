@@ -12,8 +12,17 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Putting it all together",
-        body: "Now you know HTML tags and CSS rules. Time to combine them! You'll write HTML for structure and CSS for style, and see the result live.",
-        analogy: "You've learned to build the frame (HTML) and mix the paint (CSS). Now let's build and paint a room!",
+        body: "Now you know HTML tags and CSS rules — the two fundamental languages of every webpage on the internet. Time to combine them! This is exactly how professional developers work: write HTML for the content and structure, then write CSS to make it visually appealing. Every site from a personal blog to Amazon.com is built this way.",
+        analogy: "You've learned the same two languages that power the entire web. When you right-click any webpage and select 'View Source', you'll see the same HTML tags and CSS rules you've been learning — you can now read and understand real website code.",
+        infoBoxes: [
+          {
+            variant: "standard",
+            body: "When multiple CSS rules target the same element, the browser uses specificity and source order to decide which wins. This is called the cascade — it's the 'C' in CSS.",
+          },
+        ],
+        docLinks: [
+          { label: "Getting started with CSS", url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started", type: "css-concept" },
+        ],
       },
       config: {
         type: "explanation",
@@ -28,7 +37,7 @@ export const lesson: Lesson = {
       type: "gap-fill",
       instruction: {
         heading: "Complete the styled card",
-        body: "Fill in the CSS property to give the card a background color, and the HTML class name to connect them.",
+        body: "Fill in the CSS property to give the card a background color, and the HTML class name to connect them. This card pattern is one of the most common components on the web — you see it on Twitter/X posts, Trello boards, Airbnb listings, and app stores.",
       },
       config: {
         type: "gap-fill",
@@ -49,7 +58,13 @@ export const lesson: Lesson = {
       type: "free-edit",
       instruction: {
         heading: "Build a styled page!",
-        body: "Create a mini webpage with at least: a <style> tag with CSS rules, an h1 title, a paragraph, and use at least one class. Make it look however you want!",
+        body: "Create a mini webpage with at least: a <style> tag with CSS rules, an h1 title, a paragraph, and use at least one class. You now have all the building blocks to create a real webpage — this is the same foundation that every web developer started with.",
+        infoBoxes: [
+          {
+            variant: "tip",
+            body: "Keep styles in a <style> tag or external stylesheet rather than inline style attributes. Inline styles can't be reused and have the highest specificity, making them hard to override.",
+          },
+        ],
       },
       config: {
         type: "free-edit",

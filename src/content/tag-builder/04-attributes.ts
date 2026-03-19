@@ -12,8 +12,18 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Attributes are extra info",
-        body: 'Attributes go inside the opening tag and give extra information. For example, <a href="..."> tells the browser where a link goes. Attributes have a name, an equals sign, and a value in quotes.',
-        analogy: 'If a tag is a box, attributes are labels stuck to the outside. A shipping box might have a "DESTINATION: London" label — that\'s an attribute!',
+        body: 'Attributes exist because tags alone aren\'t enough — sometimes you need to give a tag extra instructions. For example, an <a> tag creates a link, but the browser needs to know where the link goes. That\'s what href="..." does. Every clickable link you\'ve ever used on the web — from Google search results to "Add to Cart" buttons — uses the href attribute to know its destination.',
+        analogy: 'Think of a shipping package: the box itself is the tag, but without a destination label, the courier doesn\'t know where to deliver it. Attributes are those labels — they give the browser the extra details it needs to handle the element correctly.',
+        infoBoxes: [
+          {
+            variant: "standard",
+            body: "The href attribute on <a> stands for 'hypertext reference' — it's the foundation of how web pages link together, which is what makes the web a 'web'.",
+          },
+        ],
+        docLinks: [
+          { label: "<a> anchor", url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a", type: "html-element" },
+          { label: "href attribute", url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href", type: "html-attribute" },
+        ],
       },
       config: {
         type: "explanation",
@@ -45,7 +55,18 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Images use attributes too",
-        body: 'The <img> tag uses src for the image file and alt for a text description. Notice: <img> doesn\'t need a closing tag — it\'s a "self-closing" tag!',
+        body: 'The <img> tag displays images — every photo on Instagram, product image on Amazon, and meme you\'ve ever seen on the web uses this tag. The src attribute tells the browser where to find the image file, and alt provides a text description for people who can\'t see the image (using screen readers) or when the image fails to load. Notice: <img> doesn\'t need a closing tag — it\'s "self-closing" because it doesn\'t wrap around content.',
+        infoBoxes: [
+          {
+            variant: "standard",
+            body: "The alt attribute is required by WCAG 2.1 accessibility guidelines for all meaningful images. Screen readers read it aloud so visually impaired users understand what the image shows.",
+          },
+        ],
+        docLinks: [
+          { label: "<img>", url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img", type: "html-element" },
+          { label: "src attribute", url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#src", type: "html-attribute" },
+          { label: "alt attribute", url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#alt", type: "html-attribute" },
+        ],
       },
       config: {
         type: "explanation",
@@ -60,7 +81,13 @@ export const lesson: Lesson = {
       type: "free-edit",
       instruction: {
         heading: "Write a link tag",
-        body: 'Create an <a> tag with an href attribute. Make it link to anywhere you want!',
+        body: 'Create an <a> tag with an href attribute pointing to any URL. Links are the backbone of the web — they\'re what makes it a "web" of connected pages rather than isolated documents. You\'re building the same thing that powers every navigation menu, "Read more" link, and social media share button.',
+        infoBoxes: [
+          {
+            variant: "tip",
+            body: "Always quote attribute values with double quotes. While HTML technically allows some unquoted values, quotes prevent subtle bugs and are required in XHTML.",
+          },
+        ],
       },
       config: {
         type: "free-edit",

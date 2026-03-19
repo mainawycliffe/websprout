@@ -17,8 +17,6 @@ const beginnerTheme = EditorView.theme({
   "&": {
     fontSize: "16px",
     backgroundColor: "var(--color-editor-bg)",
-    borderRadius: "var(--radius-md)",
-    overflow: "hidden",
   },
   ".cm-content": {
     fontFamily: "var(--font-mono), monospace",
