@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WebSprout
+
+An interactive, browser-based learning tool that helps complete beginners build mental models around HTML and CSS through visual, hands-on exercises.
+
+Built for students fresh out of high school who have never written a line of code. No prior knowledge required.
+
+## Modules
+
+### Tag Builder
+
+Learn HTML and CSS syntax by building tags piece by piece. Fill in the blanks, see your tags visualized as colorful nested boxes, and watch a live preview update as you type.
+
+- 9 progressive lessons covering HTML tags, nesting, attributes, links, images, lists, and CSS basics
+- Gap-fill exercises for guided learning
+- Free-edit coding with live preview
+- Real-time tag tree visualization
+
+### Box Model Explorer
+
+Understand the CSS box model through interactive 3D visualization. Adjust padding, margin, and border with sliders and see changes in real time.
+
+- 6 lessons from content box to combined layouts
+- Interactive 3D view powered by Three.js
+- 2D Chrome DevTools-style overlay
+- "Match the target" challenges
+
+## Tech Stack
+
+- **Next.js 16** — App Router, static generation
+- **React 19** — `useDeferredValue`, `startTransition` for responsive typing
+- **Three.js** — 3D box model visualization via `@react-three/fiber` + `@react-three/drei`
+- **CodeMirror 6** — Code editor with syntax highlighting
+- **Motion** — UI animations and transitions
+- **IndexedDB** — Persistent progress storage (no backend required)
+- **Tailwind CSS v4** — Custom color theme with playful design tokens
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Start the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to start learning.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+src/
+├── app/                    # Next.js App Router pages
+│   └── (modules)/          # Tag Builder & Box Model routes
+├── components/
+│   ├── editor/             # CodeEditor, GapFillEditor, HtmlPreview
+│   ├── tag-builder/        # TagVisualizer, TagBuilderLesson
+│   ├── box-model/          # 3D canvas, 2D overlay, controls
+│   ├── layout/             # Header, LessonStepper, InstructionPanel
+│   └── ui/                 # Button, Slider, Card, etc.
+├── content/                # Lesson definitions (typed TypeScript)
+├── hooks/                  # useLessonProgress, useCodeValidation, useIndexedDB
+├── lib/                    # HTML parser, tag validator, lesson engine
+├── stores/                 # Zustand stores
+└── types/                  # TypeScript type definitions
+```
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
