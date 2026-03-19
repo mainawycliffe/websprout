@@ -21,9 +21,22 @@ export default function InstructionPanel({
     <Card className="border border-primary/20">
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-text">{instruction.heading}</h2>
-        <p className="text-base text-text-muted leading-relaxed">
-          {instruction.body}
-        </p>
+        <div className="text-base text-text-muted leading-relaxed flex flex-col gap-2">
+          {instruction.body.split("\n\n").map((block, i) => {
+            const lines = block.split("\n").filter(Boolean);
+            const isList = lines.every((l) => l.startsWith("•"));
+            if (isList) {
+              return (
+                <ul key={i} className="list-disc list-inside flex flex-col gap-1">
+                  {lines.map((line, j) => (
+                    <li key={j}>{line.replace(/^•\s*/, "")}</li>
+                  ))}
+                </ul>
+              );
+            }
+            return <p key={i}>{block}</p>;
+          })}
+        </div>
 
         {instruction.analogy && (
           <div className="bg-warning-light/20 border border-warning-light/40 rounded-md px-4 py-3">

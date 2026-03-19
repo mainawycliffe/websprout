@@ -14,8 +14,14 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Border: the visible edge",
-        body: "The border wraps around the padding. Unlike padding and margin which are invisible, borders are visible — they have a width, style, and color. In our model, the border is the yellow layer.",
+        body: "The border is the one box model layer you can actually see. It wraps around the padding and gives elements a visible frame — like the outline around input fields on Google's login form, or the subtle lines separating cards on Instagram.\n\nIn CSS, borders have three properties: width (thickness), style (solid, dashed, etc.), and color. In our visualization, the border is the yellow layer.",
         analogy: "The border is the actual wall of the box. Padding is the foam inside, and the border is the cardboard itself.",
+        docLinks: [
+          { label: "border", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "standard", body: "Borders have three properties: width, style, and color. The border shorthand sets all three at once (e.g., border: 2px solid #333). Without a style, borders are invisible even if they have a width." },
+        ],
       },
       config: { type: "explanation" },
       validation: { type: "none", criteria: {} },
@@ -26,7 +32,13 @@ export const lesson: Lesson = {
       type: "slider-explore",
       instruction: {
         heading: "Add a border",
-        body: "Use the sliders to add border width to each side. Watch the yellow border layer appear between the green padding and orange margin!",
+        body: "Use the border sliders on the right to adjust the border width on each side. Watch the yellow border layer appear between the green padding and the content.\n\nNotice how increasing the border makes the overall element bigger — the border is added outside the padding.",
+        docLinks: [
+          { label: "border", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "tip", body: "Borders add to the element's total size in content-box mode. A 200px-wide element with 5px borders on each side takes up 210px total — this catches many beginners off guard." },
+        ],
       },
       config: {
         type: "slider-explore",
@@ -49,7 +61,10 @@ export const lesson: Lesson = {
       type: "challenge",
       instruction: {
         heading: "Match the border",
-        body: "Set a uniform border of 8px on all sides.",
+        body: "Set all four border sides to the same value: 8px each. A uniform border (equal on all sides) is the most common pattern — you'll see it on buttons, cards, and input fields across the web.",
+        docLinks: [
+          { label: "border", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border", type: "css-property" },
+        ],
       },
       config: {
         type: "challenge",

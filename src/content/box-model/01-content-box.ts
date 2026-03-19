@@ -14,8 +14,14 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Everything is a box",
-        body: "In CSS, every element on the page is a rectangular box. Even text, images, and buttons — they're all boxes. The CSS Box Model describes the layers that make up each box.",
+        body: "In CSS, every element on the page is a rectangular box — text, images, buttons, everything. Why? Because the browser needs to know exactly how much space each element occupies so it can lay out the page.\n\nThe CSS Box Model is the system browsers use to calculate that space. It wraps every element in four layers: content, padding, border, and margin. Every YouTube thumbnail, every Google search result card, every Instagram post — they're all boxes with these four layers.",
         analogy: "Think of a picture frame. The photo is the content, and it's surrounded by layers of matting, the frame itself, and space on the wall around it.",
+        docLinks: [
+          { label: "CSS Box Model", url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model", type: "css-concept" },
+        ],
+        infoBoxes: [
+          { variant: "standard", body: "Every HTML element generates a box — even inline elements like <span>. The box model is part of the CSS specification and governs all layout in the browser." },
+        ],
       },
       config: { type: "explanation" },
       validation: { type: "none", criteria: {} },
@@ -26,7 +32,14 @@ export const lesson: Lesson = {
       type: "slider-explore",
       instruction: {
         heading: "The content layer",
-        body: "The content is the innermost box. It holds your text, images, or other elements. Try changing the width and height to see how it changes!",
+        body: "The content is the innermost layer of the box model. It holds your text, images, or other elements. Its size is controlled by the width and height properties.\n\nUse the sliders on the right to adjust the width and height. Watch how the blue content area grows and shrinks in the visualization.",
+        docLinks: [
+          { label: "width", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/width", type: "css-property" },
+          { label: "height", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/height", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "tip", body: "Width and height only set the content area by default. The total space the element takes up also includes padding, border, and margin — you'll learn about those next." },
+        ],
       },
       config: {
         type: "slider-explore",
@@ -49,7 +62,11 @@ export const lesson: Lesson = {
       type: "challenge",
       instruction: {
         heading: "Match the target size",
-        body: "Adjust the content width and height to match the target box. The target is 300px wide and 150px tall.",
+        body: "Time to practice! Use the sliders to set the content to exactly 300px wide and 150px tall. The target values panel below will turn green when you match each value.",
+        docLinks: [
+          { label: "width", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/width", type: "css-property" },
+          { label: "height", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/height", type: "css-property" },
+        ],
       },
       config: {
         type: "challenge",

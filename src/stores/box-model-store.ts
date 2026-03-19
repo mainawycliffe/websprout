@@ -13,6 +13,7 @@ interface BoxModelStore extends BoxModelState {
   setBoxSizing: (sizing: "content-box" | "border-box") => void;
   setViewMode: (mode: "2d" | "3d") => void;
   toggleExploded: () => void;
+  setContentText: (text: string) => void;
   setAllValues: (values: Partial<BoxModelState>) => void;
   reset: () => void;
 }
@@ -26,6 +27,7 @@ const initialState: BoxModelState = {
   boxSizing: "content-box",
   viewMode: "3d",
   exploded: true,
+  contentText: "Hello World",
 };
 
 export const useBoxModelStore = create<BoxModelStore>((set) => ({
@@ -42,6 +44,7 @@ export const useBoxModelStore = create<BoxModelStore>((set) => ({
   setBoxSizing: (sizing) => set({ boxSizing: sizing }),
   setViewMode: (mode) => set({ viewMode: mode }),
   toggleExploded: () => set((state) => ({ exploded: !state.exploded })),
+  setContentText: (text) => set({ contentText: text }),
   setAllValues: (values) => set(values),
   reset: () => set(initialState),
 }));

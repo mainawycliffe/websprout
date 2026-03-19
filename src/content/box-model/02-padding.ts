@@ -14,8 +14,14 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "Padding: space inside the box",
-        body: "Padding is the space between the content and the border. It pushes the content inward, giving it breathing room. You can set padding for each side independently: top, right, bottom, left.",
+        body: "Padding is the space between the content and the border. It exists so content doesn't press right up against the edges — imagine a button on Amazon where the text \"Add to Cart\" is crammed against the edge with no room to read it.\n\nYou can set padding independently for each side: top, right, bottom, and left. In the box model, padding is the green layer that wraps around the blue content.",
         analogy: "Padding is like the foam inside a shipping box. It protects the contents by creating space between them and the box walls.",
+        docLinks: [
+          { label: "padding", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "standard", body: "Padding contributes to the element's background area — background colors and images extend through the padding, not just the content." },
+        ],
       },
       config: { type: "explanation" },
       validation: { type: "none", criteria: {} },
@@ -26,7 +32,13 @@ export const lesson: Lesson = {
       type: "slider-explore",
       instruction: {
         heading: "Try adding padding",
-        body: "Use the sliders to add padding to each side. Watch how the green padding layer grows around the blue content!",
+        body: "Use the padding sliders on the right to adjust each side independently. Watch how the green padding layer grows around the blue content in the visualization.\n\nTry making the top and bottom padding different from the left and right — this is a common pattern for buttons and cards.",
+        docLinks: [
+          { label: "padding", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "tip", body: "On mobile, generous padding on buttons (at least 8px) makes them easier to tap. This is an accessibility best practice — Apple and Google both recommend minimum 44px tap targets." },
+        ],
       },
       config: {
         type: "slider-explore",
@@ -49,7 +61,10 @@ export const lesson: Lesson = {
       type: "challenge",
       instruction: {
         heading: "Match the padding",
-        body: "Set padding to 30px on top and bottom, and 20px on left and right.",
+        body: "Now try matching a specific padding layout. Your target:\n\n• Top and bottom padding: 30px\n• Left and right padding: 20px\n\nThis asymmetric pattern is common in card headers where you want more vertical breathing room than horizontal.",
+        docLinks: [
+          { label: "padding", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding", type: "css-property" },
+        ],
       },
       config: {
         type: "challenge",

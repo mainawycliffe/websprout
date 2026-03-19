@@ -14,8 +14,14 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "content-box: width means content only",
-        body: "By default, CSS uses content-box. When you set width: 200px, that's ONLY the content. Padding and border get ADDED on top, making the element bigger than 200px. Total = content + padding + border.",
+        body: "By default, CSS uses content-box — the original behavior from the earliest CSS specification. When you set width: 200px, that only sets the content area. Padding and border are added on top, making the element bigger than 200px.\n\nFor example: a 200px-wide element with 20px padding and 5px border actually takes up 250px (200 + 20 + 20 + 5 + 5). This unintuitive math caused real headaches for early web developers.",
         analogy: "It's like ordering a 12-inch pizza and the box adds 2 inches on each side. You asked for 12 inches but the total package is 16 inches!",
+        docLinks: [
+          { label: "box-sizing", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "standard", body: "content-box is the CSS specification default. The width property sets only the content width — padding and border are added on top." },
+        ],
       },
       config: { type: "explanation" },
       validation: { type: "none", criteria: {} },
@@ -26,8 +32,14 @@ export const lesson: Lesson = {
       type: "explanation",
       instruction: {
         heading: "border-box: width includes padding and border",
-        body: "With border-box, the width you set includes content + padding + border. Set width: 200px and the total stays 200px — padding and border eat into the content space. Most developers prefer this because it's more predictable!",
+        body: "With border-box, the width you set is the total size including content, padding, and border. Set width: 200px and the element stays exactly 200px wide — padding and border shrink the content area instead of expanding the element.\n\nThis makes layout math much simpler. That's why virtually every modern CSS framework — Bootstrap, Tailwind, and others — sets box-sizing: border-box globally as one of the first things they do.",
         analogy: "It's like saying the pizza box must be exactly 12 inches. If the box walls are thick, the pizza inside gets smaller to fit.",
+        docLinks: [
+          { label: "box-sizing", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "tip", body: "Most professional projects start with *, *::before, *::after { box-sizing: border-box; } in their reset stylesheet. This is considered best practice across the industry." },
+        ],
       },
       config: { type: "explanation" },
       validation: { type: "none", criteria: {} },
@@ -38,7 +50,14 @@ export const lesson: Lesson = {
       type: "slider-explore",
       instruction: {
         heading: "Toggle between modes",
-        body: "This element has padding and border. Toggle the box-sizing switch and watch what happens to the total size! In content-box mode, the total is bigger. In border-box mode, the total matches the width you set.",
+        body: "This element starts with 20px padding and 5px border on all sides. Use the box-sizing toggle in the controls to switch between the two modes and watch the total size change.\n\nIn content-box mode, the total is larger than the declared width. Switch to border-box and the total snaps to match the declared width — padding and border shrink inward instead of expanding outward.",
+        docLinks: [
+          { label: "box-sizing", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing", type: "css-property" },
+          { label: "width", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/width", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "tip", body: "If your layout unexpectedly overflows its container, check whether you're using content-box — padding and border might be making elements wider than you expect." },
+        ],
       },
       config: {
         type: "slider-explore",

@@ -10,6 +10,8 @@ import LessonStepper from "@/components/layout/LessonStepper";
 import InstructionPanel from "@/components/layout/InstructionPanel";
 import ValueControls from "@/components/box-model/ValueControls";
 import BoxModel2D from "@/components/box-model/BoxModel2D";
+import BoxModelCodePanel from "@/components/box-model/BoxModelCodePanel";
+import BoxModelDiagram from "@/components/box-model/BoxModelDiagram";
 import TargetChallenge from "@/components/box-model/TargetChallenge";
 
 // Lazy load Three.js canvas
@@ -167,29 +169,35 @@ export default function BoxModelLesson({ lesson }: BoxModelLessonProps) {
         />
 
         {/* Interactive area */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6">
-          <div className="flex flex-col gap-4">
-            {store.viewMode === "3d" ? (
-              <BoxModelCanvas highlightLayer={highlightLayer} />
-            ) : (
-              <BoxModel2D />
-            )}
+        {step.type === "explanation" ? (
+          <BoxModelDiagram />
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6">
+            <div className="flex flex-col gap-4">
+              {store.viewMode === "3d" ? (
+                <BoxModelCanvas highlightLayer={highlightLayer} />
+              ) : (
+                <BoxModel2D />
+              )}
 
-            {step.type === "challenge" && step.config.type === "challenge" && (
-              <TargetChallenge
-                targetValues={(step.config as ChallengeConfig).targetValues}
-                tolerance={(step.config as ChallengeConfig).tolerance}
+              <BoxModelCodePanel lockedProperties={lockedProperties} />
+
+              {step.type === "challenge" && step.config.type === "challenge" && (
+                <TargetChallenge
+                  targetValues={(step.config as ChallengeConfig).targetValues}
+                  tolerance={(step.config as ChallengeConfig).tolerance}
+                />
+              )}
+            </div>
+
+            <div>
+              <ValueControls
+                lockedProperties={lockedProperties}
+                highlightProperty={highlightLayer}
               />
-            )}
+            </div>
           </div>
-
-          <div>
-            <ValueControls
-              lockedProperties={lockedProperties}
-              highlightProperty={highlightLayer}
-            />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

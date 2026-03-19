@@ -58,6 +58,7 @@ export default function TargetChallenge({
     ...targetValues,
     viewMode: "2d" as const,
     exploded: false,
+    contentText: "",
   };
   const targetDerived = calculateBoxModel(targetState);
 

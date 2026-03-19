@@ -46,7 +46,7 @@ src/components/
   layout/      — Header, InstructionPanel, LessonStepper, SplitPane
   editor/      — CodeEditor, GapFillEditor, HtmlPreview, SplitPane
   tag-builder/ — TagBuilderLesson, TagVisualizer
-  box-model/   — BoxModelLesson, BoxModelCanvas, BoxModel2D, BoxLayer, ValueControls, TargetChallenge
+  box-model/   — BoxModelLesson, BoxModelCanvas, BoxModel2D, BoxLayer, ValueControls, TargetChallenge, BoxModelCodePanel
 ```
 
 ## Styling

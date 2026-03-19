@@ -9,6 +9,7 @@ export interface BoxModelState {
   boxSizing: "content-box" | "border-box";
   viewMode: "2d" | "3d";
   exploded: boolean;
+  contentText: string;
 }
 
 export interface BoxModelDerived {

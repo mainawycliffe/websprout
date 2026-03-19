@@ -5,6 +5,7 @@ import { lesson as border } from "./03-border";
 import { lesson as margin } from "./04-margin";
 import { lesson as boxSizing } from "./05-box-sizing";
 import { lesson as challenges } from "./06-challenges";
+import { lesson as realWorld } from "./07-real-world";
 
 export const boxModelLessons: Lesson[] = [
   contentBox,
@@ -13,4 +14,5 @@ export const boxModelLessons: Lesson[] = [
   margin,
   boxSizing,
   challenges,
+  realWorld,
 ];

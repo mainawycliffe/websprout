@@ -14,7 +14,15 @@ export const lesson: Lesson = {
       type: "challenge",
       instruction: {
         heading: "Challenge 1: Spacious padding",
-        body: "Create a box that is 250px wide, 120px tall, with 40px padding on all sides.",
+        body: "Create a box with generous internal spacing. Your target:\n\n• Content size: 250px wide, 120px tall\n• Padding: 40px on all four sides\n\nThis amount of padding is typical for hero sections and large call-to-action cards.",
+        docLinks: [
+          { label: "padding", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding", type: "css-property" },
+          { label: "width", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/width", type: "css-property" },
+          { label: "height", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/height", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "tip", body: "When all four sides have the same value, you can use the shorthand padding: 40px instead of setting each side individually." },
+        ],
       },
       config: {
         type: "challenge",
@@ -45,7 +53,15 @@ export const lesson: Lesson = {
       type: "challenge",
       instruction: {
         heading: "Challenge 2: Full box model",
-        body: "Build a box with: content 180x90, padding 15px all around, border 4px all around, margin 25px all around.",
+        body: "Now use all four layers at once. Your target:\n\n• Content: 180px wide, 90px tall\n• Padding: 15px on all sides\n• Border: 4px on all sides\n• Margin: 25px on all sides\n\nWork from the inside out — set the content size first, then add each layer.",
+        docLinks: [
+          { label: "padding", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding", type: "css-property" },
+          { label: "border", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border", type: "css-property" },
+          { label: "margin", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "tip", body: "Reading a box model from inside out: content, then padding, then border, then margin. The browser computes each layer in this order." },
+        ],
       },
       config: {
         type: "challenge",
@@ -81,7 +97,15 @@ export const lesson: Lesson = {
       type: "challenge",
       instruction: {
         heading: "Challenge 3: Asymmetric box",
-        body: "Build a box with: content 200x100, padding 30px top/bottom and 10px left/right, border 2px all around, margin 20px top and 0px everywhere else.",
+        body: "Real-world elements rarely have the same value on all sides. Build a box with different values per side:\n\n• Content: 200px wide, 100px tall\n• Padding: 30px top/bottom, 10px left/right\n• Border: 2px on all sides\n• Margin: 20px on top only, 0px everywhere else\n\nThis pattern is common for list items that need vertical separation but sit flush against the container edges.",
+        docLinks: [
+          { label: "padding", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding", type: "css-property" },
+          { label: "border", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border", type: "css-property" },
+          { label: "margin", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin", type: "css-property" },
+        ],
+        infoBoxes: [
+          { variant: "tip", body: "CSS shorthand for different vertical/horizontal values: padding: 30px 10px sets top/bottom to 30px and left/right to 10px." },
+        ],
       },
       config: {
         type: "challenge",
