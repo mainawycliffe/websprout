@@ -36,15 +36,16 @@ const JsConsole = memo(function JsConsole({
   useEffect(() => {
     function handleMessage(e: MessageEvent) {
       if (e.source !== iframeRef.current?.contentWindow) return;
-      if (e.data?.type === "ready") {
-        setIsReady(true);
-      }
       if (e.data?.type === "console") {
         setEntries((prev) => [...prev, e.data.entry]);
       }
     }
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
+  }, []);
+
+  const handleIframeLoad = useCallback(() => {
+    setIsReady(true);
   }, []);
 
   useEffect(() => {
@@ -123,6 +124,7 @@ const JsConsole = memo(function JsConsole({
         title="JS Sandbox"
         sandbox="allow-scripts allow-same-origin"
         srcDoc={createSandboxSrcdoc()}
+        onLoad={handleIframeLoad}
         className="hidden"
       />
     </div>

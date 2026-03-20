@@ -47,8 +47,6 @@ window.addEventListener("message", (e) => {
     parent.postMessage({ type: "done", output: __output, error: errorMsg }, "*");
   }
 });
-
-parent.postMessage({ type: "ready" }, "*");
 <\/script></head><body></body></html>`;
 
 export function createSandboxSrcdoc(): string {
