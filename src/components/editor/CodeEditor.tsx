@@ -3,11 +3,12 @@
 import CodeMirror from "@uiw/react-codemirror";
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
+import { javascript } from "@codemirror/lang-javascript";
 import { EditorView } from "@codemirror/view";
 
 interface CodeEditorProps {
   value: string;
-  language: "html" | "css" | "both";
+  language: "html" | "css" | "both" | "javascript" | "html-js";
   onChange?: (value: string) => void;
   readOnly?: boolean;
   className?: string;
@@ -41,7 +42,7 @@ const beginnerTheme = EditorView.theme({
   },
 });
 
-function getExtensions(language: "html" | "css" | "both") {
+function getExtensions(language: "html" | "css" | "both" | "javascript" | "html-js") {
   switch (language) {
     case "html":
       return [html()];
@@ -49,6 +50,10 @@ function getExtensions(language: "html" | "css" | "both") {
       return [css()];
     case "both":
       return [html()];
+    case "javascript":
+      return [javascript()];
+    case "html-js":
+      return [html({ autoCloseTags: true })];
   }
 }
 

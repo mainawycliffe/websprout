@@ -1,4 +1,4 @@
-import type { Step, GapFillConfig, FreeEditConfig, ChallengeConfig, BoxModelValues } from "@/types/lesson";
+import type { Step, GapFillConfig, FreeEditConfig, ChallengeConfig, BoxModelValues, JsConsoleConfig } from "@/types/lesson";
 
 export type ValidationResult = {
   valid: boolean;
@@ -24,6 +24,12 @@ export function validateStep(step: Step, userInput: Record<string, unknown>): Va
 
     case "values-match":
       return validateValuesMatch(step, userInput);
+
+    case "contains-js":
+      return validateContainsJs(step, userInput);
+
+    case "console-output-match":
+      return validateConsoleOutputMatch(step, userInput);
 
     default:
       return { valid: false, message: "Unknown validation type" };
@@ -152,6 +158,59 @@ function validateValuesMatch(step: Step, userInput: Record<string, unknown>): Va
     valid: false,
     message: `Almost! Check ${wrong[0].name} — it's ${wrong.length > 1 ? `and ${wrong.length - 1} more` : "off"}.`,
   };
+}
+
+function validateContainsJs(step: Step, userInput: Record<string, unknown>): ValidationResult {
+  const code = (userInput.code as string) ?? "";
+  const criteria = step.validation.criteria;
+
+  const requiredKeywords = criteria.keywords as string[] | undefined;
+  if (requiredKeywords) {
+    for (const keyword of requiredKeywords) {
+      if (!code.includes(keyword)) {
+        return { valid: false, message: `Your code should include "${keyword}"` };
+      }
+    }
+  }
+
+  const requiredPattern = criteria.pattern as string | undefined;
+  if (requiredPattern) {
+    const regex = new RegExp(requiredPattern);
+    if (!regex.test(code)) {
+      return { valid: false, message: criteria.patternMessage as string ?? "Your code doesn't match the expected pattern yet." };
+    }
+  }
+
+  return { valid: true, message: "Nice JavaScript!" };
+}
+
+function validateConsoleOutputMatch(step: Step, userInput: Record<string, unknown>): ValidationResult {
+  const consoleOutput = userInput.consoleOutput as string[] | undefined;
+  const config = step.config as JsConsoleConfig;
+  const expectedOutput = config.expectedOutput ?? (step.validation.criteria.expectedOutput as string[] | undefined);
+
+  if (!expectedOutput || expectedOutput.length === 0) {
+    return { valid: true, message: "" };
+  }
+
+  if (!consoleOutput || consoleOutput.length === 0) {
+    return { valid: false, message: "Run your code to see the output!" };
+  }
+
+  const normalize = (s: string) => s.trim().toLowerCase();
+
+  for (let i = 0; i < expectedOutput.length; i++) {
+    const expected = normalize(expectedOutput[i]);
+    const actual = consoleOutput[i] ? normalize(consoleOutput[i]) : "";
+    if (actual !== expected) {
+      return {
+        valid: false,
+        message: `Line ${i + 1} of your output doesn't match. Expected "${expectedOutput[i]}" but got "${consoleOutput[i] ?? "(nothing)"}".`,
+      };
+    }
+  }
+
+  return { valid: true, message: "Output matches perfectly!" };
 }
 
 export function getHintForStep(step: Step, attemptCount: number): string | null {

@@ -30,13 +30,14 @@ export type StepType =
   | "explanation"
   | "gap-fill"
   | "free-edit"
+  | "js-console"
   | "slider-explore"
   | "challenge";
 
 export interface DocLink {
   label: string;
   url: string;
-  type?: "html-element" | "html-attribute" | "css-property" | "css-selector" | "css-concept" | "html-concept";
+  type?: "html-element" | "html-attribute" | "css-property" | "css-selector" | "css-concept" | "html-concept" | "js-concept" | "js-method" | "js-operator";
 }
 
 export interface InfoBox {
@@ -70,14 +71,14 @@ export interface GapDefinition {
 export interface FreeEditConfig {
   type: "free-edit";
   starterCode: string;
-  language: "html" | "css" | "both";
+  language: "html" | "css" | "both" | "javascript" | "html-js";
   expectedOutput?: string;
 }
 
 export interface ExplanationConfig {
   type: "explanation";
   demoCode?: string;
-  demoLanguage?: "html" | "css";
+  demoLanguage?: "html" | "css" | "javascript";
 }
 
 export interface SliderConfig {
@@ -95,10 +96,17 @@ export interface ChallengeConfig {
   lockedProperties: string[];
 }
 
+export interface JsConsoleConfig {
+  type: "js-console";
+  starterCode: string;
+  expectedOutput?: string[];
+}
+
 export type StepConfig =
   | GapFillConfig
   | FreeEditConfig
   | ExplanationConfig
+  | JsConsoleConfig
   | SliderConfig
   | ChallengeConfig;
 
@@ -119,6 +127,6 @@ export interface SideValues {
 }
 
 export interface ValidationRule {
-  type: "none" | "exact-match" | "contains-tag" | "output-match" | "values-match" | "contains-css";
+  type: "none" | "exact-match" | "contains-tag" | "output-match" | "values-match" | "contains-css" | "contains-js" | "console-output-match";
   criteria: Record<string, unknown>;
 }
