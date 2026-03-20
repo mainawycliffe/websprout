@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <div className='flex flex-col min-h-full'>
       <Header />
-      <main className='flex-1 max-w-4xl mx-auto w-full px-4 py-12'>
+      <main className='flex-1 max-w-7xl mx-auto w-full px-4 py-12'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ export default function Home() {
           <h1 className='text-4xl font-bold bg-linear-to-r from-(--color-gradient-start) to-(--color-gradient-end) bg-clip-text text-transparent mb-3'>
             Learn HTML, CSS and Javascript
           </h1>
-          <p className='text-lg text-text-muted max-w-xl mx-auto'>
+          <p className='text-lg text-text-muted mx-auto'>
             Interactive exercises to help you understand how web pages work. No experience needed — start from zero!
           </p>
         </motion.div>
