@@ -22,6 +22,7 @@ function parseTemplate(template: string): TemplatePart[] {
   const parts: TemplatePart[] = [];
   let remaining = template;
   let textIndex = 0;
+  const gapCount: Record<string, number> = {};
 
   while (remaining.length > 0) {
     const gapMatch = remaining.match(/\{\{(\w+)\}\}/);
@@ -38,7 +39,9 @@ function parseTemplate(template: string): TemplatePart[] {
       parts.push({ type: "text", content: beforeGap, key: `text-${textIndex++}` });
     }
 
-    parts.push({ type: "gap", content: gapId, key: `gap-${gapId}` });
+    const occurrence = gapCount[gapId] ?? 0;
+    gapCount[gapId] = occurrence + 1;
+    parts.push({ type: "gap", content: gapId, key: `gap-${gapId}-${occurrence}` });
 
     remaining = remaining.slice((gapMatch.index ?? 0) + gapMatch[0].length);
   }

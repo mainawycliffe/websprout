@@ -8,6 +8,7 @@ interface JsConsoleProps {
   code: string;
   autoRun?: boolean;
   className?: string;
+  timeout?: number;
   onOutput?: (output: ConsoleEntry[]) => void;
 }
 
@@ -22,6 +23,7 @@ const JsConsole = memo(function JsConsole({
   code,
   autoRun = false,
   className = "",
+  timeout,
   onOutput,
 }: JsConsoleProps) {
   const [entries, setEntries] = useState<ConsoleEntry[]>([]);
@@ -57,7 +59,7 @@ const JsConsole = memo(function JsConsole({
     setError(null);
     setIsRunning(true);
 
-    const result = await executeInSandbox(iframeRef.current, code);
+    const result = await executeInSandbox(iframeRef.current, code, timeout);
     setIsRunning(false);
     setError(result.error);
     setEntries(result.output);
@@ -119,7 +121,7 @@ const JsConsole = memo(function JsConsole({
       <iframe
         ref={iframeRef}
         title="JS Sandbox"
-        sandbox="allow-scripts"
+        sandbox="allow-scripts allow-same-origin"
         srcDoc={createSandboxSrcdoc()}
         className="hidden"
       />

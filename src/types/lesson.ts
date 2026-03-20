@@ -100,6 +100,7 @@ export interface JsConsoleConfig {
   type: "js-console";
   starterCode: string;
   expectedOutput?: string[];
+  timeout?: number;
 }
 
 export type StepConfig =

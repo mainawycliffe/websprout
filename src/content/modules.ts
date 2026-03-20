@@ -10,6 +10,8 @@ import { jsDataTypesLessons } from "./js-data-types";
 import { jsFlowControlLessons } from "./js-flow-control";
 import { jsFunctionsLessons } from "./js-functions";
 import { jsDomLessons } from "./js-dom";
+import { jsFetchLessons } from "./js-fetch";
+import { formsLessons } from "./forms";
 
 export const modules: Module[] = [
   {
@@ -73,6 +75,16 @@ export const modules: Module[] = [
     lessons: webAccessibilityLessons,
   },
   {
+    id: "forms",
+    title: "HTML Forms",
+    description:
+      "Master HTML forms from the ground up. Build text inputs, dropdowns, checkboxes, radio buttons, and learn validation, styling, accessibility, and HTTP methods.",
+    slug: "forms",
+    icon: "\u{1F4DD}",
+    color: "#F43F5E",
+    lessons: formsLessons,
+  },
+  {
     id: "js-intro",
     title: "JS Playground",
     description:
@@ -121,6 +133,16 @@ export const modules: Module[] = [
     icon: "\u{1F50C}",
     color: "#10B981",
     lessons: jsDomLessons,
+  },
+  {
+    id: "js-fetch",
+    title: "Data Fetching",
+    description:
+      "Master the Fetch API, Promises, async/await, and JSON. Learn to request data from servers, handle errors, and display live data in the browser.",
+    slug: "js-fetch",
+    icon: "\u{1F4E1}",
+    color: "#06B6D4",
+    lessons: jsFetchLessons,
   },
 ];
 

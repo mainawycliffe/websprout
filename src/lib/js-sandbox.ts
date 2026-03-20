@@ -33,9 +33,14 @@ window.addEventListener("message", (e) => {
   if (e.data?.type !== "execute") return;
   __output.length = 0;
   try {
-    const fn = new Function(e.data.code);
-    fn();
-    parent.postMessage({ type: "done", output: __output, error: null }, "*");
+    const fn = new Function("return (async () => {\\n" + e.data.code + "\\n})()");
+    fn().then(() => {
+      parent.postMessage({ type: "done", output: __output, error: null }, "*");
+    }).catch((err) => {
+      const errorMsg = err instanceof Error ? err.message : String(err);
+      console.error(errorMsg);
+      parent.postMessage({ type: "done", output: __output, error: errorMsg }, "*");
+    });
   } catch (err) {
     const errorMsg = err instanceof Error ? err.message : String(err);
     console.error(errorMsg);
