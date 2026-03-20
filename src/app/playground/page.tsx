@@ -171,6 +171,7 @@ export default function PlaygroundPage() {
             onChange={handleCodeChange}
             diagnostics={editorDiagnostics}
             className="h-full"
+            fillHeight
           />
         </div>
         <div className="min-h-0">

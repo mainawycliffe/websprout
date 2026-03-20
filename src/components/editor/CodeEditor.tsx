@@ -15,6 +15,7 @@ interface CodeEditorProps {
   readOnly?: boolean;
   className?: string;
   diagnostics?: Diagnostic[];
+  fillHeight?: boolean;
 }
 
 const beginnerTheme = EditorView.theme({
@@ -102,6 +103,24 @@ function getExtensions(language: CodeEditorProps['language']) {
   }
 }
 
+// The library's height prop sets .cm-scroller { height: 100% !important }
+// which collapses in auto-height mode. These overrides bypass that.
+const autoHeightTheme = EditorView.theme({
+  '&': {
+    height: 'auto',
+  },
+  '& .cm-scroller': {
+    height: 'auto !important',
+    overflow: 'auto !important',
+  },
+});
+
+const fillHeightTheme = EditorView.theme({
+  '&': {
+    height: '100%',
+  },
+});
+
 export default function CodeEditor({
   value,
   language,
@@ -109,9 +128,11 @@ export default function CodeEditor({
   readOnly = false,
   className = '',
   diagnostics,
+  fillHeight = false,
 }: CodeEditorProps) {
   const extensions = useMemo(() => {
     const exts = [...getExtensions(language), beginnerTheme];
+    exts.push(fillHeight ? fillHeightTheme : autoHeightTheme);
     if (diagnostics) {
       exts.push(
         linter(() => diagnostics, { delay: 0 }),
@@ -119,36 +140,31 @@ export default function CodeEditor({
       );
     }
     return exts;
-  }, [language, diagnostics]);
+  }, [language, diagnostics, fillHeight]);
 
   return (
-    <div className={`rounded-[var(--radius-md)] overflow-hidden shadow-card flex flex-col ${className}`}>
+    <div className={`rounded-[var(--radius-md)] overflow-clip shadow-card flex flex-col ${className}`}>
       <div className='flex items-center justify-between px-4 py-2 bg-[#181825] text-xs text-[#666] shrink-0'>
         <span>{language.toUpperCase()}</span>
         {readOnly && <span className='text-warning'>READ ONLY</span>}
       </div>
-      <div className='relative flex-1 min-h-[120px]'>
-        <div className='absolute inset-0 flex flex-col'>
-          <CodeMirror
-            value={value}
-            onChange={onChange}
-            extensions={extensions}
-            theme='dark'
-            readOnly={readOnly}
-            className='flex-1'
-            basicSetup={{
-              lineNumbers: true,
-              highlightActiveLine: true,
-              bracketMatching: true,
-              closeBrackets: true,
-              autocompletion: false,
-              foldGutter: false,
-              searchKeymap: false,
-            }}
-            height='100%'
-          />
-        </div>
-      </div>
+      <CodeMirror
+        value={value}
+        onChange={onChange}
+        extensions={extensions}
+        theme='dark'
+        readOnly={readOnly}
+        className='flex-1'
+        basicSetup={{
+          lineNumbers: true,
+          highlightActiveLine: true,
+          bracketMatching: true,
+          closeBrackets: true,
+          autocompletion: false,
+          foldGutter: false,
+          searchKeymap: false,
+        }}
+      />
     </div>
   );
 }
