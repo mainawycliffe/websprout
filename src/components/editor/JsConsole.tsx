@@ -64,7 +64,7 @@ const JsConsole = memo(function JsConsole({
     setError(result.error);
     setEntries(result.output);
     onOutput?.(result.output);
-  }, [code, isReady, onOutput]);
+  }, [code, isReady, onOutput, timeout]);
 
   useEffect(() => {
     if (autoRun && isReady && code) {

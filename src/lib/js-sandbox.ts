@@ -61,10 +61,6 @@ export function executeInSandbox(
   timeout = 3000
 ): Promise<SandboxResult> {
   return new Promise((resolve) => {
-    const timer = setTimeout(() => {
-      resolve({ output: [], error: "Code took too long to run (possible infinite loop)" });
-    }, timeout);
-
     function handleMessage(e: MessageEvent) {
       if (e.source !== iframe.contentWindow) return;
       if (e.data?.type === "done") {
@@ -73,6 +69,11 @@ export function executeInSandbox(
         resolve({ output: e.data.output ?? [], error: e.data.error ?? null });
       }
     }
+
+    const timer = setTimeout(() => {
+      window.removeEventListener("message", handleMessage);
+      resolve({ output: [], error: "Code took too long to run (possible infinite loop)" });
+    }, timeout);
 
     window.addEventListener("message", handleMessage);
     iframe.contentWindow?.postMessage({ type: "execute", code }, "*");

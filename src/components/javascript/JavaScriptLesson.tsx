@@ -51,6 +51,12 @@ export default function JavaScriptLesson({ moduleId, lesson, visualizer }: JavaS
     if (step?.config.type === "gap-fill") {
       return buildCodeFromGaps((step.config as GapFillConfig).template, gapValues);
     }
+    if (step?.config.type === "free-edit" && !code) {
+      return (step.config as FreeEditConfig).starterCode;
+    }
+    if (step?.config.type === "js-console" && !code) {
+      return (step.config as JsConsoleConfig).starterCode;
+    }
     return code;
   }, [step, gapValues, code]);
 
@@ -243,10 +249,12 @@ export default function JavaScriptLesson({ moduleId, lesson, visualizer }: JavaS
                   language={(step.config as FreeEditConfig).language}
                   onChange={handleCodeChange}
                 />
-                <JsConsole
-                  code={deferredDisplayCode}
-                  onOutput={handleConsoleOutput}
-                />
+                {isJsStep && (
+                  <JsConsole
+                    code={deferredDisplayCode}
+                    onOutput={handleConsoleOutput}
+                  />
+                )}
               </div>
             )}
 
