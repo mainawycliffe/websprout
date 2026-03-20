@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "WebSprout",
   description:
     "Interactive learning tool to help beginners build mental models around HTML and CSS through visual, hands-on exercises.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 interface HeaderProps {
@@ -23,7 +24,7 @@ export default function Header({ title, backHref, rightContent }: HeaderProps) {
             </Link>
           )}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">&#127793;</span>
+            <Image src="/logo.svg" alt="WebSprout logo" width={32} height={32} />
             <span className="font-bold text-lg bg-linear-to-r from-(--color-gradient-start) to-(--color-gradient-end) bg-clip-text text-transparent">
               {title ?? "WebSprout"}
             </span>
