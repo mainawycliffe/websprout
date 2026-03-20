@@ -21,29 +21,30 @@ export default function InstructionPanel({
     <Card className="border border-primary/20">
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-text">{instruction.heading}</h2>
-        <div className="text-base text-text-muted leading-relaxed flex flex-col gap-2">
-          {instruction.body.split("\n\n").map((block, i) => {
-            const lines = block.split("\n").filter(Boolean);
-            const isList = lines.every((l) => l.startsWith("•"));
-            if (isList) {
-              return (
-                <ul key={i} className="list-disc list-inside flex flex-col gap-1">
-                  {lines.map((line, j) => (
-                    <li key={j}>{line.replace(/^•\s*/, "")}</li>
-                  ))}
-                </ul>
-              );
-            }
-            return <p key={i}>{block}</p>;
-          })}
-        </div>
+        <div
+          className="text-base text-text-muted leading-relaxed flex flex-col gap-2 [&>p]:my-0 [&>ul]:list-disc [&>ul]:list-inside [&>ul]:flex [&>ul]:flex-col [&>ul]:gap-1 [&>ol]:list-decimal [&>ol]:list-inside [&>ol]:flex [&>ol]:flex-col [&>ol]:gap-1 [&_code]:bg-secondary-light/20 [&_code]:px-1 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono"
+          dangerouslySetInnerHTML={{
+            __html: instruction.body
+              .split("\n\n")
+              .map((block) => {
+                const lines = block.split("\n").filter(Boolean);
+                const isBulletList = lines.every((l) => l.startsWith("•"));
+                if (isBulletList) {
+                  const items = lines.map((l) => `<li>${l.replace(/^•\s*/, "")}</li>`).join("");
+                  return `<ul>${items}</ul>`;
+                }
+                return `<p>${block}</p>`;
+              })
+              .join(""),
+          }}
+        />
 
         {instruction.analogy && (
           <div className="bg-warning-light/20 border border-warning-light/40 rounded-md px-4 py-3">
-            <p className="text-sm text-text">
+            <div className="text-sm text-text">
               <span className="font-semibold">Think of it this way: </span>
-              {instruction.analogy}
-            </p>
+              <span dangerouslySetInnerHTML={{ __html: instruction.analogy }} />
+            </div>
           </div>
         )}
 

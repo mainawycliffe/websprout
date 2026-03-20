@@ -8,6 +8,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 **The #1 goal of WebSprout is to teach and ensure students grasp the basics and fundamentals of web development.** Every feature, lesson, and UI decision must serve this objective. Content should not just show syntax — it should explain *why* things work the way they do, connect concepts to real-world browser behavior, and reinforce web standards conformance. When in doubt, prioritize understanding over coverage.
 
+### Content Formatting
+
+- **Use HTML, never Markdown, in lesson content strings** (`body`, `analogy`, `infoBoxes[].body`). Since WebSprout teaches HTML, the content itself must use HTML tags for formatting — `<strong>`, `<em>`, `<code>`, `<ul>/<li>`, `<ol>/<li>`, `<br>`, etc. Never use Markdown syntax (`**bold**`, `*italic*`, `` `code` ``, `- list item`). The InstructionPanel and InfoBox components render these strings as HTML.
+
 ### Content Guidelines
 
 - **Explain why it exists**: Every concept should include its purpose — *why* was it created, *what problem* does it solve? Don't just show how to use a tag; explain why the web needs it.

@@ -50,7 +50,7 @@ export default function InfoBox({ box }: InfoBoxProps) {
         {v.icon}
         <span className={`text-xs font-semibold ${v.titleColor}`}>{title}</span>
       </div>
-      <p className="text-sm text-text leading-relaxed">{box.body}</p>
+      <div className="text-sm text-text leading-relaxed [&_code]:bg-black/10 [&_code]:px-1 [&_code]:rounded [&_code]:text-xs [&_code]:font-mono" dangerouslySetInnerHTML={{ __html: box.body }} />
     </motion.div>
   );
 }

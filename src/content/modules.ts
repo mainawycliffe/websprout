@@ -1,9 +1,22 @@
 import type { Module } from "@/types/lesson";
+import { courseOverviewLessons } from "./course-overview";
 import { tagBuilderLessons } from "./tag-builder";
 import { boxModelLessons } from "./box-model";
 import { displayLayoutLessons } from "./display-layout";
+import { responsiveDesignLessons } from "./responsive-design";
+import { webAccessibilityLessons } from "./web-accessibility";
 
 export const modules: Module[] = [
+  {
+    id: "course-overview",
+    title: "Course Overview",
+    description:
+      "Understand what the web is and how it works — HTML, CSS, JavaScript, browsers, servers, and the journey of a web page.",
+    slug: "course-overview",
+    icon: "\u{1F310}",
+    color: "#06B6D4",
+    lessons: courseOverviewLessons,
+  },
   {
     id: "tag-builder",
     title: "Tag Builder",
@@ -33,6 +46,26 @@ export const modules: Module[] = [
     icon: "\u{1F9E9}",
     color: "#EC4899",
     lessons: displayLayoutLessons,
+  },
+  {
+    id: "responsive-design",
+    title: "Responsive Web Design",
+    description:
+      "Make websites adapt to any screen size. Master media queries, fluid typography, and mobile-first design.",
+    slug: "responsive-design",
+    icon: "\u{1F4F1}",
+    color: "#F59E0B",
+    lessons: responsiveDesignLessons,
+  },
+  {
+    id: "web-accessibility",
+    title: "Web Accessibility (A11y)",
+    description:
+      "Learn how to make websites accessible to all users. Master semantic HTML, ARIA attributes, keyboard navigation, color contrast, and accessibility testing.",
+    slug: "web-accessibility",
+    icon: "\u267F",
+    color: "#10B981",
+    lessons: webAccessibilityLessons,
   },
 ];
 
