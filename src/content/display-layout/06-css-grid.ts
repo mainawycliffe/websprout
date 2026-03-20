@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "CSS Grid Layout",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Grids",
             type: "css-concept",
           },
           {

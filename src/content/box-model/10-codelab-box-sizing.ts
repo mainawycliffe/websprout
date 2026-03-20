@@ -214,7 +214,7 @@ export const lesson: Lesson = {
           },
           {
             label: "CSS Box Model",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model",
             type: "css-concept",
           },
         ],

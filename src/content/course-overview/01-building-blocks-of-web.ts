@@ -26,7 +26,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Getting started with the web",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website",
             type: "html-concept",
           },
         ],
@@ -48,17 +48,17 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: HTML basics",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content",
             type: "html-concept",
           },
           {
             label: "MDN: CSS basics",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Styling_the_content",
             type: "css-concept",
           },
           {
             label: "MDN: JavaScript basics",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Adding_interactivity",
             type: "html-concept",
           },
         ],

@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Responsive design",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design",
             type: "css-concept",
           },
         ],
@@ -51,7 +51,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: CSS values and units",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units",
             type: "css-concept",
           },
         ],

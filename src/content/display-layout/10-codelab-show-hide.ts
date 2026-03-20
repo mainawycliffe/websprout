@@ -30,7 +30,7 @@ You should see index.html and style.css in the VS Code sidebar, ready for editin
         docLinks: [
           {
             label: "Getting started with HTML",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
             type: "html-concept",
           },
         ],
@@ -370,12 +370,12 @@ The key takeaway: display: none removes the element from layout entirely (0 x 0 
         docLinks: [
           {
             label: "Browser developer tools",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools",
             type: "html-concept",
           },
           {
             label: "CSS box model",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model",
             type: "css-concept",
           },
         ],

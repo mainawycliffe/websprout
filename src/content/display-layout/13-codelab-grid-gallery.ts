@@ -30,7 +30,7 @@ If you've done the previous codelabs, this workflow should feel familiar. Each c
         docLinks: [
           {
             label: "Getting started with CSS",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/Getting_started",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started",
             type: "css-concept",
           },
         ],

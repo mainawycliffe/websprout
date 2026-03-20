@@ -17,7 +17,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Styling web forms",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/Styling_web_forms",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Styling_web_forms",
             type: "css-concept",
           },
           {

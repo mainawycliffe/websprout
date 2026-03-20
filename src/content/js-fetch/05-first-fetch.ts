@@ -173,7 +173,7 @@ export const lesson: Lesson = {
       },
       config: {
         type: "gap-fill",
-        template: `const response = ___GAP1___ ___GAP2___("https://jsonplaceholder.typicode.com/posts/1");\nconst post = ___GAP3___ response.___GAP4___();\nconsole.log(post.title);`,
+        template: `const response = {{GAP1}} {{GAP2}}("https://jsonplaceholder.typicode.com/posts/1");\nconst post = {{GAP3}} response.{{GAP4}}();\nconsole.log(post.title);`,
         gaps: [
           {
             id: "GAP1",

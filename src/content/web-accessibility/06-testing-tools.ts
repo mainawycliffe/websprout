@@ -17,7 +17,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Accessibility tools",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Accessibility",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/Tooling",
             type: "html-concept",
           },
         ],
@@ -49,7 +49,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Chrome Lighthouse",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Accessibility#lighthouse",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/Tooling#lighthouse",
             type: "html-concept",
           },
         ],
@@ -78,7 +78,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "axe-core on GitHub",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Accessibility#axe_tools",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/Tooling#axe_tools",
             type: "html-concept",
           },
         ],
@@ -110,7 +110,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Screen readers",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Accessibility#screen_readers",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/Tooling#screen_readers",
             type: "html-concept",
           },
         ],

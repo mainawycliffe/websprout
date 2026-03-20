@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: What is a URL?",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
             type: "html-concept",
           },
         ],
@@ -111,7 +111,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: What is a domain name?",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_domain_name",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
             type: "html-concept",
           },
         ],

@@ -31,7 +31,7 @@ JSON: <code>{"name": "Alice", "age": 25}</code></p>
           },
           {
             label: "Working with JSON",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON",
             type: "js-concept",
           },
         ],
@@ -143,7 +143,7 @@ JSON: <code>{"name": "Alice", "age": 25}</code></p>
       },
       config: {
         type: "gap-fill",
-        template: `const product = { name: "Laptop", price: 999 };\n\n// Convert object to JSON string\nconst jsonText = JSON.___GAP1___(product);\nconsole.log(jsonText);\n\n// Convert JSON string back to object\nconst parsed = JSON.___GAP2___(jsonText);\nconsole.log(parsed.price);`,
+        template: `const product = { name: "Laptop", price: 999 };\n\n// Convert object to JSON string\nconst jsonText = JSON.{{GAP1}}(product);\nconsole.log(jsonText);\n\n// Convert JSON string back to object\nconst parsed = JSON.{{GAP2}}(jsonText);\nconsole.log(parsed.price);`,
         gaps: [
           {
             id: "GAP1",

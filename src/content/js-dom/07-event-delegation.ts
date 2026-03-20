@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Event bubbling",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Event_bubbling",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling",
             type: "js-concept",
           },
         ],
@@ -84,7 +84,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Event delegation",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Event_bubbling#event_delegation",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling#event_delegation",
             type: "js-concept",
           },
         ],

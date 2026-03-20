@@ -59,7 +59,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Making asynchronous programming easier with async and await",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises#async_and_await",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Promises#async_and_await",
             type: "js-concept",
           },
         ],
@@ -135,7 +135,7 @@ export const lesson: Lesson = {
       },
       config: {
         type: "gap-fill",
-        template: `___GAP1___ function loadData() {\n  ___GAP2___ {\n    const result = ___GAP3___ fetchFromServer();\n    console.log(result);\n  } ___GAP4___ (error) {\n    console.log("Error:", error.message);\n  }\n}`,
+        template: `{{GAP1}} function loadData() {\n  {{GAP2}} {\n    const result = {{GAP3}} fetchFromServer();\n    console.log(result);\n  } {{GAP4}} (error) {\n    console.log("Error:", error.message);\n  }\n}`,
         gaps: [
           {
             id: "GAP1",

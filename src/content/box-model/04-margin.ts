@@ -63,7 +63,7 @@ export const lesson: Lesson = {
         heading: "See all layers together",
         body: "All four layers are now unlocked. Experiment freely and watch the total size (shown at the top of the visualization) update as you adjust each layer.\n\nTry this: keep the content at 150x80, then add 20px padding, 3px border, and 15px margin. Notice how each layer adds to the total size. This is how the browser calculates space for every element on a page.",
         docLinks: [
-          { label: "CSS Box Model", url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model", type: "css-concept" },
+          { label: "CSS Box Model", url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model", type: "css-concept" },
           { label: "padding", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding", type: "css-property" },
           { label: "border", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border", type: "css-property" },
           { label: "margin", url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin", type: "css-property" },

@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Responsive images",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images",
+            url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images",
             type: "html-concept",
           },
           {

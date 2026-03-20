@@ -29,7 +29,7 @@ That's it — your project is ready! You now have a folder with two empty files,
         docLinks: [
           {
             label: "Getting started with HTML",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
             type: "html-concept",
           },
         ],
@@ -408,7 +408,7 @@ Open your browser's developer tools (F12 or Ctrl + Shift + I), hover over the qu
           },
           {
             label: "CSS box model",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model",
             type: "css-concept",
           },
         ],

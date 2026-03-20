@@ -17,7 +17,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Your first form",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Your_first_form",
             type: "html-concept",
           },
         ],
@@ -40,7 +40,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: How to structure a web form",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/How_to_structure_a_web_form",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form",
             type: "html-concept",
           },
         ],

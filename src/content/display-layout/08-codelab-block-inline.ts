@@ -30,7 +30,7 @@ Your project is ready — two empty files waiting for code.`,
         docLinks: [
           {
             label: "Getting started with HTML",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
             type: "html-concept",
           },
         ],
@@ -434,7 +434,7 @@ DevTools is one of the most powerful tools a web developer has. Get comfortable 
         docLinks: [
           {
             label: "Chrome DevTools overview",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools",
             type: "html-concept",
           },
         ],

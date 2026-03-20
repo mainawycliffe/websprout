@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: CSS values and units",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units",
             type: "css-concept",
           },
         ],
@@ -79,12 +79,12 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: em unit",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#ems_and_rems",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units#ems_and_rems",
             type: "css-concept",
           },
           {
             label: "MDN: rem unit",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#ems_and_rems",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units#ems_and_rems",
             type: "css-concept",
           },
         ],

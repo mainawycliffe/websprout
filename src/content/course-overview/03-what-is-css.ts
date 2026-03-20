@@ -24,7 +24,7 @@ export const lesson: Lesson = {
           },
           {
             label: "MDN: What is CSS?",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/What_is_CSS",
             type: "css-concept",
           },
         ],

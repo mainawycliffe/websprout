@@ -17,7 +17,7 @@ export const lesson: Lesson = {
         body: "In CSS, every element on the page is a rectangular box — text, images, buttons, everything. Why? Because the browser needs to know exactly how much space each element occupies so it can lay out the page.\n\nThe CSS Box Model is the system browsers use to calculate that space. It wraps every element in four layers: content, padding, border, and margin. Every YouTube thumbnail, every Google search result card, every Instagram post — they're all boxes with these four layers.",
         analogy: "Think of a picture frame. The photo is the content, and it's surrounded by layers of matting, the frame itself, and space on the wall around it.",
         docLinks: [
-          { label: "CSS Box Model", url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model", type: "css-concept" },
+          { label: "CSS Box Model", url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model", type: "css-concept" },
         ],
         infoBoxes: [
           { variant: "standard", body: "Every HTML element generates a box — even inline elements like <span>. The box model is part of the CSS specification and governs all layout in the browser." },

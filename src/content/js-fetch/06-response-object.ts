@@ -152,7 +152,7 @@ export const lesson: Lesson = {
       },
       config: {
         type: "gap-fill",
-        template: `async function safeFetch(url) {\n  const response = await fetch(url);\n\n  if (!response.___GAP1___) {\n    throw new Error("HTTP error: " + response.___GAP2___);\n  }\n\n  const data = await response.json();\n  return data;\n}`,
+        template: `async function safeFetch(url) {\n  const response = await fetch(url);\n\n  if (!response.{{GAP1}}) {\n    throw new Error("HTTP error: " + response.{{GAP2}});\n  }\n\n  const data = await response.json();\n  return data;\n}`,
         gaps: [
           {
             id: "GAP1",

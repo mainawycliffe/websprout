@@ -18,7 +18,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Sending form data",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data",
             type: "html-concept",
           },
         ],
@@ -122,7 +122,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Sending form data",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data",
             type: "html-concept",
           },
         ],

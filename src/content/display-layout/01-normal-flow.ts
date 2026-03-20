@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Normal flow",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Normal_Flow",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Introduction",
             type: "css-concept",
           },
           {

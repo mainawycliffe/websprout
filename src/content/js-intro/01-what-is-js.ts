@@ -63,7 +63,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "What is JavaScript?",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_is_JavaScript",
             type: "js-concept",
           },
         ],

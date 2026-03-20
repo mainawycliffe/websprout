@@ -17,7 +17,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "JavaScript basics",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Adding_interactivity",
             type: "js-concept",
           },
         ],

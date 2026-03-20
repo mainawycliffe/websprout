@@ -145,7 +145,7 @@ export const lesson: Lesson = {
       },
       config: {
         type: "gap-fill",
-        template: `const response = await fetch("/api/users", {\n  ___GAP1___: "POST",\n  headers: {\n    "___GAP2___": "application/json",\n  },\n  body: JSON.___GAP3___({\n    name: "Alice",\n    email: "alice@example.com",\n  }),\n});`,
+        template: `const response = await fetch("/api/users", {\n  {{GAP1}}: "POST",\n  headers: {\n    "{{GAP2}}": "application/json",\n  },\n  body: JSON.{{GAP3}}({\n    name: "Alice",\n    email: "alice@example.com",\n  }),\n});`,
         gaps: [
           {
             id: "GAP1",

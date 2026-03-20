@@ -97,7 +97,7 @@ export const lesson: Lesson = {
           {
             variant: "tip",
             title: "Tip",
-            body: "Always add a <code>.catch()</code> at the end of your Promise chain. Without it, errors will be silently swallowed, making bugs extremely hard to find.",
+            body: "Always add a <code>.catch()</code> at the end of your Promise chain. Without it, errors won't be handled properly, making bugs hard to find. Modern browsers log unhandled rejections to the console, but your code still won't recover gracefully.",
           },
         ],
       },
@@ -163,7 +163,7 @@ export const lesson: Lesson = {
       },
       config: {
         type: "gap-fill",
-        template: `const myPromise = new Promise((resolve) => {\n  resolve(10);\n});\n\nmyPromise\n  .___GAP1___((num) => {\n    return num * 2;\n  })\n  .then((result) => {\n    console.log(result);\n  })\n  .___GAP2___((error) => {\n    console.log("Error:", error);\n  });`,
+        template: `const myPromise = new Promise((resolve) => {\n  resolve(10);\n});\n\nmyPromise\n  .{{GAP1}}((num) => {\n    return num * 2;\n  })\n  .then((result) => {\n    console.log(result);\n  })\n  .{{GAP2}}((error) => {\n    console.log("Error:", error);\n  });`,
         gaps: [
           {
             id: "GAP1",

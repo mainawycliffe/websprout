@@ -17,7 +17,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Client-side form validation",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation",
             type: "js-concept",
           },
         ],

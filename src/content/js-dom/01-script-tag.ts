@@ -76,7 +76,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Script loading strategies",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript#script_loading_strategies",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_is_JavaScript#script_loading_strategies",
             type: "js-concept",
           },
         ],

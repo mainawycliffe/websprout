@@ -17,7 +17,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Creating accessible forms",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/How_to_structure_a_web_form#creating_accessible_forms",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form#creating_accessible_forms",
             type: "html-concept",
           },
         ],
@@ -172,7 +172,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Creating accessible forms",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/How_to_structure_a_web_form#creating_accessible_forms",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form#creating_accessible_forms",
             type: "html-concept",
           },
         ],

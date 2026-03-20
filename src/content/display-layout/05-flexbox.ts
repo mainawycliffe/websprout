@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Flexbox",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox",
             type: "css-concept",
           },
           {

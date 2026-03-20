@@ -122,7 +122,7 @@ export const lesson: Lesson = {
       },
       config: {
         type: "gap-fill",
-        template: `async function loadPost(id) {\n  ___GAP1___ {\n    const response = await fetch("/api/posts/" + id);\n    if (!response.___GAP2___) {\n      ___GAP3___ new Error("Failed: " + response.status);\n    }\n    return await response.json();\n  } catch (error) {\n    console.log(error.message);\n  }\n}`,
+        template: `async function loadPost(id) {\n  {{GAP1}} {\n    const response = await fetch("/api/posts/" + id);\n    if (!response.{{GAP2}}) {\n      {{GAP3}} new Error("Failed: " + response.status);\n    }\n    return await response.json();\n  } catch (error) {\n    console.log(error.message);\n  }\n}`,
         gaps: [
           {
             id: "GAP1",

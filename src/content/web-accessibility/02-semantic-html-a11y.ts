@@ -23,7 +23,7 @@ export const lesson: Lesson = {
           },
           {
             label: "MDN: Document and website structure",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Structuring_documents",
             type: "html-concept",
           },
         ],

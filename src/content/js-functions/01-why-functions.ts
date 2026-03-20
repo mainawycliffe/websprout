@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Functions — reusable blocks of code",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Functions",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Functions",
             type: "js-concept",
           },
         ],
@@ -74,7 +74,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "JavaScript building blocks",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting",
             type: "js-concept",
           },
         ],

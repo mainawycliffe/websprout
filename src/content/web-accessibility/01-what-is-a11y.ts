@@ -18,7 +18,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: What is accessibility?",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/What_is_accessibility",
             type: "html-concept",
           },
           {
@@ -55,7 +55,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: What is accessibility?",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/What_is_accessibility",
             type: "html-concept",
           },
         ],
@@ -87,7 +87,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Accessibility guidelines and the law",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility#accessibility_guidelines_and_the_law",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/What_is_accessibility#accessibility_guidelines_and_the_law",
             type: "html-concept",
           },
         ],

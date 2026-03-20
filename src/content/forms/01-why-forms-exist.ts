@@ -18,12 +18,12 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Web forms",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms",
             type: "html-concept",
           },
           {
             label: "MDN: Your first form",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Your_first_form",
             type: "html-concept",
           },
         ],
@@ -50,7 +50,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: How to structure a web form",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/How_to_structure_a_web_form",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form",
             type: "html-concept",
           },
         ],
@@ -78,7 +78,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Sending form data",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data",
             type: "html-concept",
           },
         ],

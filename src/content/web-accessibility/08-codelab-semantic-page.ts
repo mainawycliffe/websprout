@@ -29,7 +29,7 @@ Your project is ready. In the next step, we will write the inaccessible "before"
         docLinks: [
           {
             label: "MDN: Getting started with HTML",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
             type: "html-concept",
           },
         ],

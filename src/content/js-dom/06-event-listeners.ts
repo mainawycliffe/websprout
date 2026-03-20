@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Introduction to events",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events",
             type: "js-concept",
           },
           {

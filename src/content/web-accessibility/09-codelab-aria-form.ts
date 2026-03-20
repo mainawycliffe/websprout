@@ -457,7 +457,7 @@ Save with Ctrl + S, refresh the browser, and test:
           },
           {
             label: "MDN: Client-side form validation",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation",
             type: "html-concept",
           },
         ],

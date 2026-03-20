@@ -80,7 +80,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Anatomy of an HTML document",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started#anatomy_of_an_html_document",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax#anatomy_of_an_html_document",
             type: "html-concept",
           },
         ],

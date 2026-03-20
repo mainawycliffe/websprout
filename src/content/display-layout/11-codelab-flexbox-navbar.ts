@@ -30,7 +30,7 @@ That's it — your project is ready! You now have a folder with two empty files,
         docLinks: [
           {
             label: "Getting started with HTML",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
             type: "html-concept",
           },
         ],
@@ -507,7 +507,7 @@ Think about how this button would fit into the flex layout: since the navbar use
           },
           {
             label: "Responsive design",
-            url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design",
             type: "css-concept",
           },
         ],
