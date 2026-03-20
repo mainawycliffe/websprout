@@ -12,6 +12,8 @@ import type {
 import type { ConsoleEntry } from "@/lib/js-sandbox";
 import { useLessonProgress } from "@/hooks/useLessonProgress";
 import { validateStep, getHintForStep, buildCodeFromGaps } from "@/lib/lesson-engine";
+import { getHtmlDiagnostics } from "@/lib/html-diagnostics";
+import { getCssDiagnostics } from "@/lib/css-diagnostics";
 import LessonStepper from "@/components/layout/LessonStepper";
 import InstructionPanel from "@/components/layout/InstructionPanel";
 import CodeEditor from "@/components/editor/CodeEditor";
@@ -68,6 +70,23 @@ export default function JavaScriptLesson({ moduleId, lesson, visualizer }: JavaS
     }
     return "";
   }, [step]);
+
+  // HTML/CSS diagnostics for non-JS free-edit steps
+  const editorDiagnostics = useMemo(() => {
+    if (!step || step.config.type !== "free-edit") return undefined;
+    const lang = (step.config as FreeEditConfig).language;
+    const codeToCheck = deferredDisplayCode;
+    if (!codeToCheck) return undefined;
+    if (lang === "html" || lang === "both") {
+      const diags = getHtmlDiagnostics(codeToCheck);
+      return diags.length > 0 ? diags : undefined;
+    }
+    if (lang === "css") {
+      const diags = getCssDiagnostics(codeToCheck);
+      return diags.length > 0 ? diags : undefined;
+    }
+    return undefined;
+  }, [step, deferredDisplayCode]);
 
   const isJsStep = useMemo(() => {
     if (!step) return false;
@@ -248,6 +267,7 @@ export default function JavaScriptLesson({ moduleId, lesson, visualizer }: JavaS
                   value={code || (step.config as FreeEditConfig).starterCode}
                   language={(step.config as FreeEditConfig).language}
                   onChange={handleCodeChange}
+                  diagnostics={editorDiagnostics}
                 />
                 {isJsStep && (
                   <JsConsole

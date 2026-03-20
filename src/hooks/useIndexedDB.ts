@@ -4,8 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import { openDB, type IDBPDatabase } from "idb";
 
 const DB_NAME = "html-css-playground";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_NAME = "progress";
+const PLAYGROUND_STORE = "playground";
 
 interface ProgressData {
   lessonId: string;
@@ -26,6 +27,9 @@ function getDB() {
             keyPath: "lessonId",
           });
           store.createIndex("moduleId", "moduleId");
+        }
+        if (!db.objectStoreNames.contains(PLAYGROUND_STORE)) {
+          db.createObjectStore(PLAYGROUND_STORE, { keyPath: "id" });
         }
       },
     });
@@ -66,5 +70,21 @@ export function useIndexedDB() {
     await db.clear(STORE_NAME);
   }, []);
 
-  return { isReady, saveProgress, getProgress, getModuleProgress, clearProgress };
+  const savePlaygroundState = useCallback(
+    async (data: { id: string; code: string; language: string; lastSaved: number }) => {
+      const db = await getDB();
+      await db.put(PLAYGROUND_STORE, data);
+    },
+    []
+  );
+
+  const getPlaygroundState = useCallback(
+    async (id: string): Promise<{ id: string; code: string; language: string; lastSaved: number } | undefined> => {
+      const db = await getDB();
+      return db.get(PLAYGROUND_STORE, id);
+    },
+    []
+  );
+
+  return { isReady, saveProgress, getProgress, getModuleProgress, clearProgress, savePlaygroundState, getPlaygroundState };
 }

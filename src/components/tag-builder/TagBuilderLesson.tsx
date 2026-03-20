@@ -6,6 +6,7 @@ import type { Lesson, GapFillConfig, FreeEditConfig, ExplanationConfig } from "@
 import { useLessonProgress } from "@/hooks/useLessonProgress";
 import { useCodeValidation } from "@/hooks/useCodeValidation";
 import { validateStep, getHintForStep, buildCodeFromGaps } from "@/lib/lesson-engine";
+import { getHtmlDiagnostics } from "@/lib/html-diagnostics";
 import LessonStepper from "@/components/layout/LessonStepper";
 import InstructionPanel from "@/components/layout/InstructionPanel";
 import CodeEditor from "@/components/editor/CodeEditor";
@@ -51,6 +52,13 @@ export default function TagBuilderLesson({ lesson }: TagBuilderLessonProps) {
   // Defer the code passed to validation so it doesn't block typing
   const deferredDisplayCode = useDeferredValue(displayCode);
   const { parsedTree } = useCodeValidation(deferredDisplayCode);
+
+  // HTML diagnostics for inline linting
+  const htmlDiagnostics = useMemo(() => {
+    if (!deferredDisplayCode) return undefined;
+    const diags = getHtmlDiagnostics(deferredDisplayCode);
+    return diags.length > 0 ? diags : undefined;
+  }, [deferredDisplayCode]);
 
   // Demo code for explanation steps
   const demoCode = useMemo(() => {
@@ -230,6 +238,7 @@ export default function TagBuilderLesson({ lesson }: TagBuilderLessonProps) {
                   value={code || (step.config as FreeEditConfig).starterCode}
                   language={(step.config as FreeEditConfig).language}
                   onChange={handleCodeChange}
+                  diagnostics={htmlDiagnostics}
                 />
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <TagVisualizer tree={parsedTree} />

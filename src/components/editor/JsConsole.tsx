@@ -1,15 +1,21 @@
 "use client";
 
-import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { createSandboxSrcdoc, executeInSandbox } from "@/lib/js-sandbox";
 import type { ConsoleEntry } from "@/lib/js-sandbox";
 
+export interface JsConsoleHandle {
+  run: (code: string) => Promise<void>;
+  clear: () => void;
+}
+
 interface JsConsoleProps {
-  code: string;
+  code?: string;
   autoRun?: boolean;
   className?: string;
   timeout?: number;
   onOutput?: (output: ConsoleEntry[]) => void;
+  ref?: React.Ref<JsConsoleHandle>;
 }
 
 const entryColors: Record<ConsoleEntry["type"], string> = {
@@ -25,6 +31,7 @@ const JsConsole = memo(function JsConsole({
   className = "",
   timeout,
   onOutput,
+  ref,
 }: JsConsoleProps) {
   const [entries, setEntries] = useState<ConsoleEntry[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -54,18 +61,35 @@ const JsConsole = memo(function JsConsole({
     }
   }, [entries]);
 
-  const handleRun = useCallback(async () => {
+  const runCode = useCallback(async (codeToRun: string) => {
     if (!iframeRef.current || !isReady) return;
     setEntries([]);
     setError(null);
     setIsRunning(true);
 
-    const result = await executeInSandbox(iframeRef.current, code, timeout);
+    const result = await executeInSandbox(iframeRef.current, codeToRun, timeout);
     setIsRunning(false);
     setError(result.error);
     setEntries(result.output);
     onOutput?.(result.output);
-  }, [code, isReady, onOutput, timeout]);
+  }, [isReady, onOutput, timeout]);
+
+  const handleRun = useCallback(async () => {
+    if (code !== undefined) {
+      await runCode(code);
+    }
+  }, [code, runCode]);
+
+  const handleClear = useCallback(() => {
+    setEntries([]);
+    setError(null);
+  }, []);
+
+  // Expose imperative handle for playground use
+  useImperativeHandle(ref, () => ({
+    run: runCode,
+    clear: handleClear,
+  }), [runCode, handleClear]);
 
   useEffect(() => {
     if (autoRun && isReady && code) {
@@ -73,14 +97,9 @@ const JsConsole = memo(function JsConsole({
     }
   }, [autoRun, isReady, code, handleRun]);
 
-  const handleClear = useCallback(() => {
-    setEntries([]);
-    setError(null);
-  }, []);
-
   return (
-    <div className={`rounded-[var(--radius-md)] overflow-hidden shadow-card ${className}`}>
-      <div className="flex items-center justify-between px-4 py-2 bg-[#181825] text-xs text-[#666]">
+    <div className={`rounded-[var(--radius-md)] overflow-hidden shadow-card flex flex-col ${className}`}>
+      <div className="flex items-center justify-between px-4 py-2 bg-[#181825] text-xs text-[#666] shrink-0">
         <span>CONSOLE</span>
         <div className="flex gap-2">
           <button
@@ -89,18 +108,20 @@ const JsConsole = memo(function JsConsole({
           >
             Clear
           </button>
-          <button
-            onClick={handleRun}
-            disabled={isRunning || !isReady}
-            className="px-3 py-0.5 rounded bg-green-700 hover:bg-green-600 text-white disabled:opacity-50 transition-colors"
-          >
-            {isRunning ? "Running..." : "Run"}
-          </button>
+          {code !== undefined && (
+            <button
+              onClick={handleRun}
+              disabled={isRunning || !isReady}
+              className="px-3 py-0.5 rounded bg-green-700 hover:bg-green-600 text-white disabled:opacity-50 transition-colors"
+            >
+              {isRunning ? "Running..." : "Run"}
+            </button>
+          )}
         </div>
       </div>
       <div
         ref={outputRef}
-        className="bg-[#1e1e2e] min-h-[120px] max-h-[300px] overflow-y-auto p-4 font-mono text-sm"
+        className="bg-[#1e1e2e] min-h-[120px] flex-1 overflow-y-auto p-4 font-mono text-sm"
       >
         {entries.length === 0 && !error && (
           <span className="text-[#555]">Click &quot;Run&quot; to execute your code...</span>
