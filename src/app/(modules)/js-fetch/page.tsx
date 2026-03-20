@@ -4,7 +4,8 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import Card from "@/components/ui/Card";
 import ProgressIndicator from "@/components/ui/ProgressIndicator";
-import { getModule } from "@/content/modules";
+import { getModule, getPrerequisiteModules } from "@/content/modules";
+import PrerequisitesList from "@/components/ui/PrerequisitesList";
 import { useIndexedDB } from "@/hooks/useIndexedDB";
 import { useEffect, useState } from "react";
 
@@ -40,6 +41,7 @@ export default function JsFetchPage() {
           </h1>
         </div>
         <p className="text-text-muted">{mod.description}</p>
+        <PrerequisitesList prerequisites={getPrerequisiteModules(mod)} linked />
       </motion.div>
       <div className="flex flex-col gap-4">
         {mod.lessons.map((lesson, i) => {

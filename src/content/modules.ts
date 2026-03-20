@@ -33,6 +33,7 @@ export const modules: Module[] = [
     icon: "\u{1F4E6}",
     color: "#3B82F6",
     lessons: tagBuilderLessons,
+    prerequisites: ["course-overview"],
   },
   {
     id: "box-model",
@@ -43,6 +44,7 @@ export const modules: Module[] = [
     icon: "\u{1F4D0}",
     color: "#8B5CF6",
     lessons: boxModelLessons,
+    prerequisites: ["tag-builder"],
   },
   {
     id: "display-layout",
@@ -53,6 +55,7 @@ export const modules: Module[] = [
     icon: "\u{1F9E9}",
     color: "#EC4899",
     lessons: displayLayoutLessons,
+    prerequisites: ["tag-builder", "box-model"],
   },
   {
     id: "responsive-design",
@@ -63,6 +66,7 @@ export const modules: Module[] = [
     icon: "\u{1F4F1}",
     color: "#F59E0B",
     lessons: responsiveDesignLessons,
+    prerequisites: ["display-layout"],
   },
   {
     id: "web-accessibility",
@@ -73,6 +77,7 @@ export const modules: Module[] = [
     icon: "\u267F",
     color: "#10B981",
     lessons: webAccessibilityLessons,
+    prerequisites: ["tag-builder"],
   },
   {
     id: "forms",
@@ -83,6 +88,7 @@ export const modules: Module[] = [
     icon: "\u{1F4DD}",
     color: "#F43F5E",
     lessons: formsLessons,
+    prerequisites: ["tag-builder"],
   },
   {
     id: "js-intro",
@@ -93,6 +99,7 @@ export const modules: Module[] = [
     icon: "\u26A1",
     color: "#F59E0B",
     lessons: jsIntroLessons,
+    prerequisites: ["course-overview"],
   },
   {
     id: "js-data-types",
@@ -103,6 +110,7 @@ export const modules: Module[] = [
     icon: "\u{1F4CA}",
     color: "#3B82F6",
     lessons: jsDataTypesLessons,
+    prerequisites: ["js-intro"],
   },
   {
     id: "js-flow-control",
@@ -113,6 +121,7 @@ export const modules: Module[] = [
     icon: "\u{1F500}",
     color: "#8B5CF6",
     lessons: jsFlowControlLessons,
+    prerequisites: ["js-data-types"],
   },
   {
     id: "js-functions",
@@ -123,6 +132,7 @@ export const modules: Module[] = [
     icon: "\u{2699}\uFE0F",
     color: "#EC4899",
     lessons: jsFunctionsLessons,
+    prerequisites: ["js-flow-control"],
   },
   {
     id: "js-dom",
@@ -133,6 +143,7 @@ export const modules: Module[] = [
     icon: "\u{1F50C}",
     color: "#10B981",
     lessons: jsDomLessons,
+    prerequisites: ["js-functions", "tag-builder"],
   },
   {
     id: "js-fetch",
@@ -143,11 +154,19 @@ export const modules: Module[] = [
     icon: "\u{1F4E1}",
     color: "#06B6D4",
     lessons: jsFetchLessons,
+    prerequisites: ["js-dom"],
   },
 ];
 
 export function getModule(slug: string): Module | undefined {
   return modules.find((m) => m.slug === slug);
+}
+
+export function getPrerequisiteModules(mod: Module): Module[] {
+  if (!mod.prerequisites) return [];
+  return mod.prerequisites
+    .map((slug) => getModule(slug))
+    .filter((m): m is Module => m !== undefined);
 }
 
 export function getLesson(moduleSlug: string, lessonSlug: string) {

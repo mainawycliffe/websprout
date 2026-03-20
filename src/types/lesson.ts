@@ -6,6 +6,7 @@ export interface Module {
   icon: string;
   color: string;
   lessons: Lesson[];
+  prerequisites?: string[];
 }
 
 export interface Lesson {

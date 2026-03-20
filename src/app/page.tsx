@@ -3,7 +3,8 @@
 import Header from '@/components/layout/Header';
 import Card from '@/components/ui/Card';
 import ProgressIndicator from '@/components/ui/ProgressIndicator';
-import { modules } from '@/content/modules';
+import { modules, getPrerequisiteModules } from '@/content/modules';
+import PrerequisitesList from '@/components/ui/PrerequisitesList';
 import { useIndexedDB } from '@/hooks/useIndexedDB';
 import { motion } from 'motion/react';
 import Link from 'next/link';
@@ -68,6 +69,7 @@ export default function Home() {
                       <h2 className='text-xl font-bold text-text mb-1'>{mod.title}</h2>
                       <p className='text-sm text-text-muted leading-relaxed'>{mod.description}</p>
                     </div>
+                    <PrerequisitesList prerequisites={getPrerequisiteModules(mod)} />
                     <ProgressIndicator progress={moduleProgress[mod.id] ?? 0} color={mod.color} showLabel />
                   </div>
                 </Card>
