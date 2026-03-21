@@ -16,9 +16,10 @@ import TagVisualizer from "@/components/tag-builder/TagVisualizer";
 
 interface TagBuilderLessonProps {
   lesson: Lesson;
+  initialStep?: number;
 }
 
-export default function TagBuilderLesson({ lesson }: TagBuilderLessonProps) {
+export default function TagBuilderLesson({ lesson, initialStep }: TagBuilderLessonProps) {
   const {
     currentStep,
     completedSteps,
@@ -27,7 +28,7 @@ export default function TagBuilderLesson({ lesson }: TagBuilderLessonProps) {
     goToNextStep,
     goToPrevStep,
     saveCode,
-  } = useLessonProgress("tag-builder", lesson);
+  } = useLessonProgress("tag-builder", lesson, initialStep);
 
   const [code, setCode] = useState("");
   const [gapValues, setGapValues] = useState<Record<string, string>>({});

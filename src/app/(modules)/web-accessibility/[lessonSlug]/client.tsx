@@ -9,11 +9,12 @@ const AccessibilityVisualizer = dynamic(
   { ssr: false }
 );
 
-export default function WebAccessibilityLessonClient({ lesson, lessonSlug }: { lesson: Lesson; lessonSlug: string }) {
+export default function WebAccessibilityLessonClient({ lesson, lessonSlug, initialStep }: { lesson: Lesson; lessonSlug: string; initialStep?: number }) {
   return (
     <ContentLesson
       moduleId="web-accessibility"
       lesson={lesson}
+      initialStep={initialStep}
       visualizer={(stepId, stepIndex) => (
         <AccessibilityVisualizer lessonSlug={lessonSlug} stepId={stepId} stepIndex={stepIndex} />
       )}

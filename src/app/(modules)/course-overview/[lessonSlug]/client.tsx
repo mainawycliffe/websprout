@@ -12,14 +12,17 @@ const WebConceptsVisualizer = dynamic(
 export default function CourseOverviewLessonClient({
   lesson,
   lessonSlug,
+  initialStep,
 }: {
   lesson: Lesson;
   lessonSlug: string;
+  initialStep?: number;
 }) {
   return (
     <ContentLesson
       moduleId="course-overview"
       lesson={lesson}
+      initialStep={initialStep}
       visualizer={(stepId, stepIndex) => (
         <WebConceptsVisualizer
           lessonSlug={lessonSlug}

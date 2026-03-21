@@ -26,9 +26,10 @@ const BoxModelCanvas = dynamic(() => import("./BoxModelCanvas"), {
 
 interface BoxModelLessonProps {
   lesson: Lesson;
+  initialStep?: number;
 }
 
-export default function BoxModelLesson({ lesson }: BoxModelLessonProps) {
+export default function BoxModelLesson({ lesson, initialStep }: BoxModelLessonProps) {
   const {
     currentStep,
     completedSteps,
@@ -36,7 +37,7 @@ export default function BoxModelLesson({ lesson }: BoxModelLessonProps) {
     goToStep,
     goToNextStep,
     goToPrevStep,
-  } = useLessonProgress("box-model", lesson);
+  } = useLessonProgress("box-model", lesson, initialStep);
 
   const store = useBoxModelStore();
   const [feedback, setFeedback] = useState<{ valid: boolean; message: string } | null>(null);

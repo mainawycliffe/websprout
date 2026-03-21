@@ -5,14 +5,17 @@ import JavaScriptLesson from "@/components/javascript/JavaScriptLesson";
 
 export default function JsFetchLessonClient({
   lesson,
+  initialStep,
 }: {
   lesson: Lesson;
   lessonSlug: string;
+  initialStep?: number;
 }) {
   return (
     <JavaScriptLesson
       moduleId="js-fetch"
       lesson={lesson}
+      initialStep={initialStep}
     />
   );
 }

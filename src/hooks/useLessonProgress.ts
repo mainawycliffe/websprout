@@ -4,9 +4,17 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useIndexedDB } from "./useIndexedDB";
 import type { Lesson } from "@/types/lesson";
 
-export function useLessonProgress(moduleId: string, lesson: Lesson) {
+// Capture the native replaceState before Next.js patches it.
+// This lets us update the URL bar without triggering a soft navigation.
+const nativeReplaceState =
+  typeof window !== "undefined"
+    ? History.prototype.replaceState.bind(window.history)
+    : undefined;
+
+export function useLessonProgress(moduleId: string, lesson: Lesson, initialStep: number = 0) {
   const { isReady, saveProgress, getProgress } = useIndexedDB();
-  const [currentStep, setCurrentStep] = useState(0);
+  const clampedInitial = Math.max(0, Math.min(initialStep, lesson.steps.length - 1));
+  const [currentStep, setCurrentStep] = useState(clampedInitial);
   const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
   const [savedCode, setSavedCode] = useState("");
 
@@ -56,6 +64,15 @@ export function useLessonProgress(moduleId: string, lesson: Lesson) {
     (step: number) => {
       if (step >= 0 && step < lesson.steps.length) {
         setCurrentStep(step);
+        // Sync step to URL path using native replaceState to avoid
+        // triggering Next.js soft navigation (which would re-render the page)
+        if (nativeReplaceState) {
+          const pathParts = window.location.pathname.split("/");
+          // Base path is /<module>/<lesson> (segments: "", module, lesson)
+          const basePath = pathParts.slice(0, 3).join("/");
+          const newPath = step === 0 ? basePath : `${basePath}/${step}`;
+          nativeReplaceState(null, "", newPath);
+        }
       }
     },
     [lesson.steps.length]

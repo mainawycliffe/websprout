@@ -38,9 +38,10 @@ function extractDisplayProps(code: string) {
 
 interface DisplayLayoutLessonProps {
   lesson: Lesson;
+  initialStep?: number;
 }
 
-export default function DisplayLayoutLesson({ lesson }: DisplayLayoutLessonProps) {
+export default function DisplayLayoutLesson({ lesson, initialStep }: DisplayLayoutLessonProps) {
   const {
     currentStep,
     completedSteps,
@@ -49,7 +50,7 @@ export default function DisplayLayoutLesson({ lesson }: DisplayLayoutLessonProps
     goToNextStep,
     goToPrevStep,
     saveCode,
-  } = useLessonProgress("display-layout", lesson);
+  } = useLessonProgress("display-layout", lesson, initialStep);
 
   const [code, setCode] = useState("");
   const [gapValues, setGapValues] = useState<Record<string, string>>({});

@@ -12,14 +12,17 @@ const ResponsiveVisualizer = dynamic(
 export default function ResponsiveDesignLessonClient({
   lesson,
   lessonSlug,
+  initialStep,
 }: {
   lesson: Lesson;
   lessonSlug: string;
+  initialStep?: number;
 }) {
   return (
     <ContentLesson
       moduleId="responsive-design"
       lesson={lesson}
+      initialStep={initialStep}
       visualizer={(stepId, stepIndex) => (
         <ResponsiveVisualizer
           lessonSlug={lessonSlug}

@@ -23,10 +23,11 @@ import JsConsole from "@/components/editor/JsConsole";
 interface JavaScriptLessonProps {
   moduleId: string;
   lesson: Lesson;
+  initialStep?: number;
   visualizer?: (stepId: string, stepIndex: number) => React.ReactNode | null;
 }
 
-export default function JavaScriptLesson({ moduleId, lesson, visualizer }: JavaScriptLessonProps) {
+export default function JavaScriptLesson({ moduleId, lesson, initialStep, visualizer }: JavaScriptLessonProps) {
   const {
     currentStep,
     completedSteps,
@@ -35,7 +36,7 @@ export default function JavaScriptLesson({ moduleId, lesson, visualizer }: JavaS
     goToNextStep,
     goToPrevStep,
     saveCode,
-  } = useLessonProgress(moduleId, lesson);
+  } = useLessonProgress(moduleId, lesson, initialStep);
 
   const [code, setCode] = useState("");
   const [gapValues, setGapValues] = useState<Record<string, string>>({});

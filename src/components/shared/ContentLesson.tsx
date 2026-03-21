@@ -15,10 +15,11 @@ import HtmlPreview from "@/components/editor/HtmlPreview";
 interface ContentLessonProps {
   moduleId: string;
   lesson: Lesson;
+  initialStep?: number;
   visualizer?: (stepId: string, stepIndex: number) => React.ReactNode | null;
 }
 
-export default function ContentLesson({ moduleId, lesson, visualizer }: ContentLessonProps) {
+export default function ContentLesson({ moduleId, lesson, initialStep, visualizer }: ContentLessonProps) {
   const {
     currentStep,
     completedSteps,
@@ -27,7 +28,7 @@ export default function ContentLesson({ moduleId, lesson, visualizer }: ContentL
     goToNextStep,
     goToPrevStep,
     saveCode,
-  } = useLessonProgress(moduleId, lesson);
+  } = useLessonProgress(moduleId, lesson, initialStep);
 
   const [code, setCode] = useState("");
   const [gapValues, setGapValues] = useState<Record<string, string>>({});

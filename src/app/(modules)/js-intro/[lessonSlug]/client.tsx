@@ -12,14 +12,17 @@ const JavaScriptVisualizer = dynamic(
 export default function JsIntroLessonClient({
   lesson,
   lessonSlug,
+  initialStep,
 }: {
   lesson: Lesson;
   lessonSlug: string;
+  initialStep?: number;
 }) {
   return (
     <JavaScriptLesson
       moduleId="js-intro"
       lesson={lesson}
+      initialStep={initialStep}
       visualizer={(stepId, stepIndex) => (
         <JavaScriptVisualizer
           lessonSlug={lessonSlug}
