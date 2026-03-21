@@ -45,6 +45,9 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
     if (step?.config.type === "gap-fill") {
       return buildCodeFromGaps((step.config as GapFillConfig).template, gapValues);
     }
+    if (step?.config.type === "free-edit" && !code) {
+      return (step.config as FreeEditConfig).starterCode;
+    }
     return code;
   }, [step, gapValues, code]);
 
