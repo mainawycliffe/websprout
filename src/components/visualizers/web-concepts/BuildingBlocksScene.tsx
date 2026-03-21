@@ -84,7 +84,7 @@ function HighlightLayer({
       </mesh>
       <Text
         position={[0, 0, 0.1]}
-        fontSize={0.32}
+        fontSize={0.38}
         color="#ffffff"
         anchorX="center"
         anchorY="middle"
@@ -112,12 +112,13 @@ export default function BuildingBlocksScene({
         height={1}
         color="#3B82F6"
         label="HTML — Structure"
-        opacity={0.7}
+        labelSize={0.38}
+        opacity={0.85}
       />
       {showSubLabels && (
         <Text
           position={[0, -1.7, 0.1]}
-          fontSize={0.2}
+          fontSize={0.24}
           color="#93C5FD"
           anchorX="center"
           anchorY="middle"
@@ -132,12 +133,13 @@ export default function BuildingBlocksScene({
         height={1}
         color="#8B5CF6"
         label="CSS — Style"
-        opacity={0.7}
+        labelSize={0.38}
+        opacity={0.85}
       />
       {showSubLabels && (
         <Text
           position={[0, -0.5, 0.1]}
-          fontSize={0.2}
+          fontSize={0.24}
           color="#C4B5FD"
           anchorX="center"
           anchorY="middle"
@@ -152,12 +154,13 @@ export default function BuildingBlocksScene({
         height={1}
         color="#F59E0B"
         label="JS — Behavior"
-        opacity={0.7}
+        labelSize={0.38}
+        opacity={0.85}
       />
       {showSubLabels && (
         <Text
           position={[0, 0.7, 0.1]}
-          fontSize={0.2}
+          fontSize={0.24}
           color="#FCD34D"
           anchorX="center"
           anchorY="middle"
