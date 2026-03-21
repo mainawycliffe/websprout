@@ -174,3 +174,11 @@ export function getLesson(moduleSlug: string, lessonSlug: string) {
   if (!mod) return undefined;
   return mod.lessons.find((l) => l.slug === lessonSlug);
 }
+
+export function getNextLesson(moduleSlug: string, lessonSlug: string) {
+  const mod = getModule(moduleSlug);
+  if (!mod) return undefined;
+  const idx = mod.lessons.findIndex((l) => l.slug === lessonSlug);
+  if (idx === -1 || idx >= mod.lessons.length - 1) return undefined;
+  return mod.lessons[idx + 1];
+}

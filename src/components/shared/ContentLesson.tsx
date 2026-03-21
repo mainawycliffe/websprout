@@ -6,6 +6,9 @@ import type { Lesson, GapFillConfig, FreeEditConfig, ExplanationConfig } from "@
 import { useLessonProgress } from "@/hooks/useLessonProgress";
 import { useCodeValidation } from "@/hooks/useCodeValidation";
 import { validateStep, getHintForStep, buildCodeFromGaps } from "@/lib/lesson-engine";
+import { getModule, getNextLesson } from "@/content/modules";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import LessonStepper from "@/components/layout/LessonStepper";
 import InstructionPanel from "@/components/layout/InstructionPanel";
 import CodeEditor from "@/components/editor/CodeEditor";
@@ -20,6 +23,7 @@ interface ContentLessonProps {
 }
 
 export default function ContentLesson({ moduleId, lesson, initialStep, visualizer }: ContentLessonProps) {
+  const router = useRouter();
   const {
     currentStep,
     completedSteps,
@@ -76,12 +80,27 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
     }, 1000);
   }, []);
 
+  const isLastStep = currentStep === lesson.steps.length - 1;
+
+  const navigateAfterComplete = useCallback(() => {
+    const next = getNextLesson(moduleId, lesson.slug);
+    if (next) {
+      router.push(`/${moduleId}/${next.slug}`);
+    } else {
+      router.push(`/${moduleId}`);
+    }
+  }, [moduleId, lesson.slug, router]);
+
   const handleNext = useCallback(() => {
     if (!step) return;
 
     if (step.type === "explanation") {
       completeStep(currentStep);
-      goToNextStep();
+      if (isLastStep) {
+        navigateAfterComplete();
+      } else {
+        goToNextStep();
+      }
       setFeedback(null);
       setAttemptCount(0);
       return;
@@ -98,16 +117,20 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
     if (result.valid) {
       completeStep(currentStep);
       setTimeout(() => {
-        goToNextStep();
-        setFeedback(null);
-        setAttemptCount(0);
-        setGapValues({});
-        setCode("");
+        if (isLastStep) {
+          navigateAfterComplete();
+        } else {
+          goToNextStep();
+          setFeedback(null);
+          setAttemptCount(0);
+          setGapValues({});
+          setCode("");
+        }
       }, 1000);
     } else {
       setAttemptCount((prev) => prev + 1);
     }
-  }, [step, currentStep, displayCode, gapValues, completeStep, goToNextStep]);
+  }, [step, currentStep, isLastStep, displayCode, gapValues, completeStep, goToNextStep, navigateAfterComplete]);
 
   const handlePrev = useCallback(() => {
     goToPrevStep();
@@ -138,12 +161,27 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
     completedSteps.has(currentStep) ||
     feedback?.valid === true;
 
+  const moduleTitle = useMemo(() => getModule(moduleId)?.title ?? moduleId, [moduleId]);
+
   if (!step) return null;
 
   return (
     <div className="max-w-6xl mx-auto w-full px-4 py-6">
       <div className="flex flex-col gap-6">
         <div>
+          <nav aria-label="Breadcrumb" className="mb-2">
+            <ol className="flex items-center gap-1.5 text-sm text-text-muted">
+              <li>
+                <Link href="/#modules" className="hover:text-text transition-colors">Modules</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href={`/${moduleId}`} className="hover:text-text transition-colors">{moduleTitle}</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="text-text truncate max-w-50">{lesson.title}</li>
+            </ol>
+          </nav>
           <h1 className="text-2xl font-bold text-text">{lesson.title}</h1>
           <p className="text-sm text-text-muted">{lesson.description}</p>
         </div>
