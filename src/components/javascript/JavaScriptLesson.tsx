@@ -14,7 +14,8 @@ import { useLessonProgress } from "@/hooks/useLessonProgress";
 import { validateStep, getHintForStep, buildCodeFromGaps } from "@/lib/lesson-engine";
 import { getHtmlDiagnostics } from "@/lib/html-diagnostics";
 import { getCssDiagnostics } from "@/lib/css-diagnostics";
-import { getNextLesson } from "@/content/modules";
+import { getModule, getNextLesson } from "@/content/modules";
+import Link from "next/link";
 import LessonStepper from "@/components/layout/LessonStepper";
 import LessonCompleteScreen from "@/components/layout/LessonCompleteScreen";
 import InstructionPanel from "@/components/layout/InstructionPanel";
@@ -201,6 +202,8 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
     return getHintForStep(step, attemptCount - 2);
   }, [step, attemptCount]);
 
+  const moduleTitle = useMemo(() => getModule(moduleId)?.title ?? moduleId, [moduleId]);
+
   const canProgress =
     step?.type === "explanation" ||
     completedSteps.has(currentStep) ||
@@ -212,6 +215,19 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
     <div className="max-w-6xl mx-auto w-full px-4 py-6">
       <div className="flex flex-col gap-6">
         <div>
+          <nav aria-label="Breadcrumb" className="mb-2">
+            <ol className="flex items-center gap-1.5 text-sm text-text-muted">
+              <li>
+                <Link href="/#modules" className="hover:text-text transition-colors">Modules</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href={`/${moduleId}`} className="hover:text-text transition-colors">{moduleTitle}</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="text-text truncate max-w-50">{lesson.title}</li>
+            </ol>
+          </nav>
           <h1 className="text-2xl font-bold text-text">{lesson.title}</h1>
           <p className="text-sm text-text-muted">{lesson.description}</p>
         </div>
