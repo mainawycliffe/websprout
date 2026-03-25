@@ -31,5 +31,5 @@ export default async function TagBuilderLessonPage({ params }: Props) {
 
   const initialStep = step?.[0] ? parseInt(step[0], 10) || 0 : 0;
 
-  return <TagBuilderLesson lesson={lesson} initialStep={initialStep} />;
+  return <TagBuilderLesson moduleId="tag-builder" lesson={lesson} initialStep={initialStep} />;
 }

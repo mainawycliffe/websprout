@@ -31,5 +31,5 @@ export default async function BoxModelLessonPage({ params }: Props) {
 
   const initialStep = step?.[0] ? parseInt(step[0], 10) || 0 : 0;
 
-  return <BoxModelLesson lesson={lesson} initialStep={initialStep} />;
+  return <BoxModelLesson moduleId="box-model" lesson={lesson} initialStep={initialStep} />;
 }

@@ -31,5 +31,5 @@ export default async function DisplayLayoutLessonPage({ params }: Props) {
 
   const initialStep = step?.[0] ? parseInt(step[0], 10) || 0 : 0;
 
-  return <DisplayLayoutLesson lesson={lesson} initialStep={initialStep} />;
+  return <DisplayLayoutLesson moduleId="display-layout" lesson={lesson} initialStep={initialStep} />;
 }
