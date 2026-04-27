@@ -22,6 +22,7 @@ import InstructionPanel from "@/components/layout/InstructionPanel";
 import CodeEditor from "@/components/editor/CodeEditor";
 import GapFillEditor from "@/components/editor/GapFillEditor";
 import JsConsole from "@/components/editor/JsConsole";
+import InteractivePreview from "@/components/editor/InteractivePreview";
 
 interface JavaScriptLessonProps {
   moduleId: string;
@@ -313,12 +314,14 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
                       onChange={handleCodeChange}
                       diagnostics={editorDiagnostics}
                     />
-                    {isJsStep && (
+                    {(step!.config as FreeEditConfig).language === "html-js" ? (
+                      <InteractivePreview html={deferredDisplayCode} />
+                    ) : isJsStep ? (
                       <JsConsole
                         code={deferredDisplayCode}
                         onOutput={handleConsoleOutput}
                       />
-                    )}
+                    ) : null}
                   </div>
                 )}
 

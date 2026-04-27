@@ -9,6 +9,9 @@ import { lesson as eventDelegation } from "./07-event-delegation";
 import { lesson as capstone } from "./08-capstone";
 import { lesson as codelabTodo } from "./09-codelab-todo";
 import { lesson as codelabColor } from "./10-codelab-color";
+import { lesson as practicePredictOutput } from "./11-practice-predict-output";
+import { lesson as practiceFixBroken } from "./12-practice-fix-broken";
+import { lesson as practiceBuildFromScratch } from "./13-practice-build-from-scratch";
 
 export const jsDomLessons: Lesson[] = [
   scriptTag,
@@ -21,4 +24,7 @@ export const jsDomLessons: Lesson[] = [
   capstone,
   codelabTodo,
   codelabColor,
+  practicePredictOutput,
+  practiceFixBroken,
+  practiceBuildFromScratch,
 ];
