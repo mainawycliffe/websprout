@@ -2,6 +2,8 @@ import type { Module } from '@/types/lesson';
 import { boxModelLessons } from './box-model';
 import { courseOverviewLessons } from './course-overview';
 import { cssAnimationsLessons } from './css-animations';
+import { cssBackgroundsLessons } from './css-backgrounds';
+import { cssPositioningLessons } from './css-positioning';
 import { displayLayoutLessons } from './display-layout';
 import { formsLessons } from './forms';
 import { jsDataTypesLessons } from './js-data-types';
@@ -9,6 +11,7 @@ import { jsDomLessons } from './js-dom';
 import { jsFetchLessons } from './js-fetch';
 import { jsFlowControlLessons } from './js-flow-control';
 import { jsFunctionsLessons } from './js-functions';
+import { jsIntegrationLessons } from './js-integration';
 import { jsIntroLessons } from './js-intro';
 import { responsiveDesignLessons } from './responsive-design';
 import { tagBuilderLessons } from './tag-builder';
@@ -78,6 +81,28 @@ export const modules: Module[] = [
     color: '#A78BFA',
     lessons: cssAnimationsLessons,
     prerequisites: ['display-layout', 'responsive-design'],
+  },
+  {
+    id: 'css-backgrounds',
+    title: 'Backgrounds & Gradients',
+    description:
+      'Paint behind your content. Learn background-image, gradients, sizing, positioning, and the layered overlays that power every modern hero section.',
+    slug: 'css-backgrounds',
+    icon: '\u{1F5BC}️',
+    color: '#0EA5E9',
+    lessons: cssBackgroundsLessons,
+    prerequisites: ['tag-builder', 'box-model'],
+  },
+  {
+    id: 'css-positioning',
+    title: 'Positioning & Layers',
+    description:
+      'Escape normal flow. Learn position: relative/absolute/fixed/sticky, z-index, stacking contexts, and pseudo-element tooltips — the toolkit behind modals, dropdowns, and sticky headers.',
+    slug: 'css-positioning',
+    icon: '\u{1F4D1}',
+    color: '#D946EF',
+    lessons: cssPositioningLessons,
+    prerequisites: ['display-layout'],
   },
   {
     id: 'web-accessibility',
@@ -166,6 +191,17 @@ export const modules: Module[] = [
     color: '#06B6D4',
     lessons: jsFetchLessons,
     prerequisites: ['js-dom'],
+  },
+  {
+    id: 'js-integration',
+    title: 'JS + HTML/CSS Integration',
+    description:
+      'Practice real interactive features: theme toggles, modals, accordions, tab switchers, validators, carousels, and a Sukuma price calculator. JS that mutates HTML and toggles CSS classes.',
+    slug: 'js-integration',
+    icon: '\u{1F517}',
+    color: '#14B8A6',
+    lessons: jsIntegrationLessons,
+    prerequisites: ['js-dom', 'tag-builder'],
   },
 ];
 
