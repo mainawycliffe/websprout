@@ -72,14 +72,14 @@ export interface GapDefinition {
 export interface FreeEditConfig {
   type: "free-edit";
   starterCode: string;
-  language: "html" | "css" | "both" | "javascript" | "html-js";
+  language: "html" | "css" | "both" | "javascript" | "html-js" | "typescript";
   expectedOutput?: string;
 }
 
 export interface ExplanationConfig {
   type: "explanation";
   demoCode?: string;
-  demoLanguage?: "html" | "css" | "javascript";
+  demoLanguage?: "html" | "css" | "javascript" | "typescript";
 }
 
 export interface SliderConfig {

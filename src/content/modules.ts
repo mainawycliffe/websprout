@@ -13,6 +13,7 @@ import { jsFlowControlLessons } from './js-flow-control';
 import { jsFunctionsLessons } from './js-functions';
 import { jsIntegrationLessons } from './js-integration';
 import { jsIntroLessons } from './js-intro';
+import { jsPracticeTsLessons } from './js-practice-ts';
 import { responsiveDesignLessons } from './responsive-design';
 import { tagBuilderLessons } from './tag-builder';
 import { webAccessibilityLessons } from './web-accessibility';
@@ -169,6 +170,17 @@ export const modules: Module[] = [
     color: '#EC4899',
     lessons: jsFunctionsLessons,
     prerequisites: ['js-flow-control'],
+  },
+  {
+    id: 'js-practice-ts',
+    title: 'JS Drills & TypeScript',
+    description:
+      'Sharpen your JavaScript with quickfire drills, untangle the famous quirks (== vs ===, hoisting, this, NaN), then graduate to TypeScript: types, interfaces, narrowing, and generics that make your code self-documenting.',
+    slug: 'js-practice-ts',
+    icon: '\u{1F6E0}️',
+    color: '#7C3AED',
+    lessons: jsPracticeTsLessons,
+    prerequisites: ['js-functions'],
   },
   {
     id: 'js-dom',
