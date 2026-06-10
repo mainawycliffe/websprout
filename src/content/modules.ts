@@ -14,6 +14,9 @@ import { jsFunctionsLessons } from './js-functions';
 import { jsIntegrationLessons } from './js-integration';
 import { jsIntroLessons } from './js-intro';
 import { jsPracticeTsLessons } from './js-practice-ts';
+import { modernJsLessons } from './modern-js';
+import { nextjsBeginnersLessons } from './nextjs-beginners';
+import { reactFundamentalsLessons } from './react-fundamentals';
 import { responsiveDesignLessons } from './responsive-design';
 import { tagBuilderLessons } from './tag-builder';
 import { webAccessibilityLessons } from './web-accessibility';
@@ -214,6 +217,39 @@ export const modules: Module[] = [
     color: '#14B8A6',
     lessons: jsIntegrationLessons,
     prerequisites: ['js-dom', 'tag-builder'],
+  },
+  {
+    id: 'modern-js',
+    title: 'Modern JavaScript',
+    description:
+      'The modern JavaScript you actually use in React and production code — spread & rest, default parameters, object shorthand, the array-method toolkit (map/filter/reduce), safe data access, and async patterns. The bridge from vanilla JS to frameworks.',
+    slug: 'modern-js',
+    icon: '🚀',
+    color: '#EAB308',
+    lessons: modernJsLessons,
+    prerequisites: ['js-data-types', 'js-functions'],
+  },
+  {
+    id: 'react-fundamentals',
+    title: 'React Fundamentals',
+    description:
+      'Learn React from scratch — components, JSX, props, state, and effects — building live, interactive UIs right in your browser. The library behind Facebook, Instagram, and most modern web apps.',
+    slug: 'react-fundamentals',
+    icon: '⚛️',
+    color: '#61DAFB',
+    lessons: reactFundamentalsLessons,
+    prerequisites: ['modern-js', 'js-functions', 'js-dom'],
+  },
+  {
+    id: 'nextjs-beginners',
+    title: 'Next.js for Beginners',
+    description:
+      'Graduate from CDN scripts to a real toolchain. Guided codelabs covering create-next-app, the App Router, pages, layouts, server vs client components, data fetching, and deploying to Vercel.',
+    slug: 'nextjs-beginners',
+    icon: '▲',
+    color: '#0F172A',
+    lessons: nextjsBeginnersLessons,
+    prerequisites: ['react-fundamentals'],
   },
 ];
 
