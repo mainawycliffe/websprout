@@ -17,6 +17,7 @@ import { jsPracticeTsLessons } from './js-practice-ts';
 import { modernJsLessons } from './modern-js';
 import { nextjsBeginnersLessons } from './nextjs-beginners';
 import { reactFundamentalsLessons } from './react-fundamentals';
+import { reactNextjsVisualizedLessons } from './react-nextjs-visualized';
 import { responsiveDesignLessons } from './responsive-design';
 import { tagBuilderLessons } from './tag-builder';
 import { webAccessibilityLessons } from './web-accessibility';
@@ -249,6 +250,17 @@ export const modules: Module[] = [
     icon: '▲',
     color: '#0F172A',
     lessons: nextjsBeginnersLessons,
+    prerequisites: ['react-fundamentals'],
+  },
+  {
+    id: 'react-nextjs-visualized',
+    title: 'React & Next.js, Visualized',
+    description:
+      'See the ideas that confuse every beginner — component trees, re-rendering, effects & memos, file-based routing, and layouts — through animated diagrams, then build them yourself.',
+    slug: 'react-nextjs-visualized',
+    icon: '\u{1F52C}',
+    color: '#22D3EE',
+    lessons: reactNextjsVisualizedLessons,
     prerequisites: ['react-fundamentals'],
   },
 ];
