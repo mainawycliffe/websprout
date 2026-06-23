@@ -4,6 +4,7 @@ import { courseOverviewLessons } from './course-overview';
 import { cssAnimationsLessons } from './css-animations';
 import { cssBackgroundsLessons } from './css-backgrounds';
 import { cssPositioningLessons } from './css-positioning';
+import { dataFetchingLessons } from './data-fetching';
 import { displayLayoutLessons } from './display-layout';
 import { formsLessons } from './forms';
 import { jsDataTypesLessons } from './js-data-types';
@@ -262,6 +263,17 @@ export const modules: Module[] = [
     color: '#22D3EE',
     lessons: reactNextjsVisualizedLessons,
     prerequisites: ['react-fundamentals'],
+  },
+  {
+    id: 'data-fetching',
+    title: 'Data Fetching in React & Next.js',
+    description:
+      'Go from useEffect fetching to full-stack data: loading and error states, race conditions, custom hooks, data libraries, and Next.js Server Components — capped by building a live, multi-page dashboard.',
+    slug: 'data-fetching',
+    icon: '\u{1F6F0}\u{FE0F}',
+    color: '#38BDF8',
+    lessons: dataFetchingLessons,
+    prerequisites: ['react-fundamentals', 'nextjs-beginners', 'js-fetch'],
   },
 ];
 
