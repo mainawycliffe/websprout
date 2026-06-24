@@ -6,7 +6,7 @@ export const lesson: Lesson = {
   title: "Codelab: Build & Deploy a Fan Page",
   description:
     "A guided 2–3 hour project. Scaffold a Next.js app, build a customizable fan page from your own data, refactor it into reusable components, style it with CSS Modules, and deploy it live to the web.",
-  order: 13,
+  order: 17,
   steps: [
     {
       id: "fan-brief",

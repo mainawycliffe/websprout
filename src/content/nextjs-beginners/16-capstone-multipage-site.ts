@@ -6,7 +6,7 @@ export const lesson: Lesson = {
   title: "Capstone: Build and Deploy a Multi-Page Site",
   description:
     "Combine everything — layout, routing, links, a client component, and server data fetching — into a real multi-page site, then deploy it to the web.",
-  order: 12,
+  order: 16,
   steps: [
     {
       id: "capstone-brief",

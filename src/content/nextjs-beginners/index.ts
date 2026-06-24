@@ -10,8 +10,12 @@ import { lesson as nestedLayouts } from "./08-nested-layouts";
 import { lesson as serverVsClientComponents } from "./09-server-vs-client-components";
 import { lesson as dataFetching } from "./10-data-fetching";
 import { lesson as stylingAndAssets } from "./11-styling-and-assets";
-import { lesson as capstoneMultipageSite } from "./12-capstone-multipage-site";
-import { lesson as codelabFanPage } from "./13-codelab-fan-page";
+import { lesson as colocation } from "./12-colocation";
+import { lesson as routeGroups } from "./13-route-groups";
+import { lesson as dynamicRoutes } from "./14-dynamic-routes";
+import { lesson as projectStructure } from "./15-project-structure";
+import { lesson as capstoneMultipageSite } from "./16-capstone-multipage-site";
+import { lesson as codelabFanPage } from "./17-codelab-fan-page";
 
 export const nextjsBeginnersLessons: Lesson[] = [
   whatIsNextjs,
@@ -25,6 +29,10 @@ export const nextjsBeginnersLessons: Lesson[] = [
   serverVsClientComponents,
   dataFetching,
   stylingAndAssets,
+  colocation,
+  routeGroups,
+  dynamicRoutes,
+  projectStructure,
   capstoneMultipageSite,
   codelabFanPage,
 ];
