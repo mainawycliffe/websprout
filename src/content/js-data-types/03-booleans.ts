@@ -42,7 +42,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Comparison operators",
-            url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#comparison_operators",
+            url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators",
             type: "js-operator",
           },
           {

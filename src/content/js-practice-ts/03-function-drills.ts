@@ -120,32 +120,81 @@ export const lesson: Lesson = {
     },
     {
       id: "my-map",
-      type: "free-edit",
+      type: "code-challenge",
+      difficulty: "intermediate",
       instruction: {
         heading: "Re-implement Array.prototype.map",
-        body: "<p>Build <code>myMap(arr, fn)</code> from scratch using a <code>for</code> loop. It should return a new array where each element is <code>fn(element)</code>.</p><p>Re-implementing built-ins is the fastest way to truly understand what the language gives you for free.</p>",
+        body: "<p>Build <code>myMap(arr, fn)</code> from scratch using a <code>for</code> loop. It should return a <strong>new</strong> array where each element is <code>fn(element)</code> — leaving the array you were handed completely untouched.</p><p>Re-implementing a built-in is the fastest way to understand what the language hands you for free. Every time you write <code>.map()</code> after this, you will know exactly what the engine is doing under the hood.</p><p>Write your function, then click <strong>Run Tests</strong>. Each test shows you what it passed in and what it expected back, so a failure tells you exactly which behaviour is missing.</p>",
+        analogy:
+          "A photocopier with a filter on the glass. You feed in a stack of pages, each one comes out transformed — and the originals go back to you unchanged.",
+        docLinks: [
+          {
+            label: "MDN: Array.prototype.map()",
+            url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+            type: "js-method",
+          },
+          {
+            label: "MDN: for statement",
+            url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for",
+            type: "js-concept",
+          },
+        ],
         infoBoxes: [
           {
             variant: "standard",
             title: "Web Standard",
-            body: "<code>Array.prototype.map</code> is specified to call the callback with three arguments: <code>(element, index, array)</code>. The simpler version below only passes the element — that is fine for the drill.",
+            body: "<code>Array.prototype.map</code> is specified to call the callback with three arguments — <code>(element, index, array)</code> — and to skip holes in sparse arrays. The simplified version here only passes the element, which is all the drill needs.",
+          },
+          {
+            variant: "tip",
+            title: "Tip — don't mutate the input",
+            body: "Two of the tests check that the array you were given comes back unchanged, and that you returned a genuinely new array. If you write back into <code>arr</code> instead of building a fresh one, those tests will catch you — and so will a code reviewer.",
           },
         ],
       },
       config: {
-        type: "free-edit",
+        type: "code-challenge",
+        functionName: "myMap",
         language: "javascript",
         starterCode:
-          "function myMap(arr, fn) {\n  // 1. Create a new empty array.\n  // 2. Loop through arr.\n  // 3. Push fn(item) into the new array.\n  // 4. Return it.\n}\n\nconsole.log(myMap([1, 2, 3], n => n * 10)); // [ 10, 20, 30 ]\nconsole.log(myMap([\"a\", \"b\"], s => s.toUpperCase())); // [ \"A\", \"B\" ]",
+          "function myMap(arr, fn) {\n  // 1. Create a new empty array.\n  // 2. Loop through arr with a for loop.\n  // 3. Push fn(arr[i]) into the new array.\n  // 4. Return the new array.\n}\n",
+        // Every test uses `expression` because the callbacks are functions, and
+        // functions cannot cross postMessage's structured clone.
+        tests: [
+          {
+            name: "transforms every number",
+            expression: "return myMap([1, 2, 3], n => n * 10);",
+            expected: [10, 20, 30],
+          },
+          {
+            name: "works on strings too",
+            expression: "return myMap(['a', 'b'], s => s.toUpperCase());",
+            expected: ["A", "B"],
+          },
+          {
+            name: "returns an empty array for an empty input",
+            expression: "return myMap([], n => n);",
+            expected: [],
+          },
+          {
+            name: "does not mutate the original array",
+            expression: "const original = [1, 2, 3]; myMap(original, n => n * 2); return original;",
+            expected: [1, 2, 3],
+          },
+          {
+            name: "returns a NEW array, not the same one",
+            expression: "const original = [1, 2]; return myMap(original, n => n) === original;",
+            expected: false,
+          },
+        ],
+        solution:
+          "function myMap(arr, fn) {\n  const result = [];\n  for (let i = 0; i < arr.length; i++) {\n    result.push(fn(arr[i]));\n  }\n  return result;\n}\n",
       },
-      validation: {
-        type: "contains-js",
-        criteria: { keywords: ["for", "push", "return"] },
-      },
+      validation: { type: "tests-pass", criteria: {} },
       hints: [
-        "<code>const result = []; for (let i = 0; i &lt; arr.length; i++) { ... }</code>",
+        "Start with <code>const result = [];</code> then <code>for (let i = 0; i &lt; arr.length; i++) { }</code>",
         "Inside the loop: <code>result.push(fn(arr[i]));</code>",
-        "Return <code>result</code> at the end.",
+        "Don't forget <code>return result;</code> at the very end — a function with no <code>return</code> gives back <code>undefined</code>.",
       ],
     },
   ],

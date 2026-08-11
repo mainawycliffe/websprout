@@ -49,7 +49,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Array — accessing items",
-            url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#accessing_array_elements",
+            url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
             type: "js-concept",
           },
         ],

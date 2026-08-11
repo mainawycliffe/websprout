@@ -128,7 +128,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Skip navigation links",
-            url: "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Operable#skip_navigation_links",
+            url: "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Operable",
             type: "html-concept",
           },
         ],

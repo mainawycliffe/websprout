@@ -109,5 +109,86 @@ export const lesson: Lesson = {
         "The arrow function matters: <code>onClick={() => setCount(count + 1)}</code>, not <code>onClick={setCount(count + 1)}</code> (which would run instantly on render).",
       ],
     },
+    {
+      id: "state-challenge",
+      type: "code-challenge",
+      difficulty: "intermediate",
+      instruction: {
+        heading: "Challenge: a counter that refuses to go negative",
+        body: `<p>Build a <code>Counter</code> component that starts at <code>0</code> and renders the current value inside a <code>&lt;p&gt;</code>, plus two buttons: one with the text <code>+</code> and one with the text <code>-</code>.</p><p>Now the real problem: the count must <strong>never drop below zero</strong>. Clicking <code>-</code> at zero should leave it at zero. Before you write anything, decide where that rule lives — in the click handler, or in what you render? Both can be made to work, but only one keeps the state itself honest.</p><p>The tests click the buttons for you and then read what is on screen, so they check behaviour, not the shape of your code.</p>`,
+        docLinks: [
+          {
+            label: "React.dev — useState",
+            url: "https://react.dev/reference/react/useState",
+            type: "js-concept",
+          },
+          {
+            label: "React.dev — Responding to events",
+            url: "https://react.dev/learn/responding-to-events",
+            type: "js-concept",
+          },
+        ],
+        infoBoxes: [
+          {
+            variant: "standard",
+            title: "Web Standard",
+            body: "A <code>&lt;button&gt;</code> is focusable and clickable from the keyboard for free — that is why React's <code>onClick</code> on a real button is accessible, while an <code>onClick</code> on a <code>&lt;div&gt;</code> is not. The tests here call <code>.click()</code>, the same DOM method the browser uses.",
+          },
+          {
+            variant: "tip",
+            title: "Tip — guard the state, not the display",
+            body: "Clamping in the handler (<code>Math.max(0, count - 1)</code>) means the value in state is always valid. Clamping only when rendering leaves a negative number sitting in state, ready to leak into the next feature that reads it.",
+          },
+        ],
+      },
+      config: {
+        type: "code-challenge",
+        functionName: "Counter",
+        componentName: "Counter",
+        language: "react",
+        starterCode:
+          "function Counter() {\n  // 1. const [count, setCount] = React.useState(0);\n  // 2. Render the count inside a <p>.\n  // 3. Add a + button and a - button.\n  // 4. Never let the count go below 0.\n  return <div></div>;\n}\n",
+        tests: [
+          {
+            name: "starts at 0",
+            render: { props: {}, assert: "return container.querySelector('p').textContent;" },
+            expected: "0",
+          },
+          {
+            name: "the + button increments",
+            render: {
+              props: {},
+              assert:
+                "const plus = [...container.querySelectorAll('button')].find(b => b.textContent.trim() === '+'); plus.click(); await tick(); return container.querySelector('p').textContent;",
+            },
+            expected: "1",
+          },
+          {
+            name: "the - button decrements after counting up",
+            render: {
+              props: {},
+              assert:
+                "const btns = [...container.querySelectorAll('button')]; const plus = btns.find(b => b.textContent.trim() === '+'); const minus = btns.find(b => b.textContent.trim() === '-'); plus.click(); await tick(); plus.click(); await tick(); minus.click(); await tick(); return container.querySelector('p').textContent;",
+            },
+            expected: "1",
+          },
+          {
+            name: "never goes below zero",
+            render: {
+              props: {},
+              assert:
+                "const minus = [...container.querySelectorAll('button')].find(b => b.textContent.trim() === '-'); minus.click(); await tick(); minus.click(); await tick(); return container.querySelector('p').textContent;",
+            },
+            expected: "0",
+          },
+        ],
+      },
+      validation: { type: "tests-pass", criteria: {} },
+      hints: [
+        "In the sandbox, hooks come off the global React object: <code>const [count, setCount] = React.useState(0);</code>",
+        "Increment with an arrow function so it runs on click, not on render: <code>onClick={() => setCount(count + 1)}</code>",
+        "Clamp the decrement so state can never hold a negative: <code>onClick={() => setCount(Math.max(0, count - 1))}</code>",
+      ],
+    },
   ],
 };

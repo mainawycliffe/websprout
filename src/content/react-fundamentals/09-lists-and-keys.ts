@@ -170,5 +170,101 @@ export const lesson: Lesson = {
         "Each item needs a key so React can track it: <code>key={task}</code>.",
       ],
     },
+    {
+      id: "lists-challenge",
+      type: "code-challenge",
+      difficulty: "intermediate",
+      instruction: {
+        heading: "Challenge: show only what is in stock",
+        body: `<p>Write a <code>ProductList</code> component that receives a single prop, <code>products</code> — an array of objects shaped like <code>{ id, name, inStock }</code>.</p><p>Render a <code>&lt;ul&gt;</code> containing one <code>&lt;li&gt;</code> per product, showing the product's <code>name</code>. But only the products where <code>inStock</code> is <code>true</code> should appear.</p><p>This is two problems stacked, and the order you solve them in matters: <strong>narrow the array first, then turn what is left into elements.</strong> Trying to do both inside one <code>map</code> is where this usually goes wrong — <code>map</code> always returns one output per input, so it cannot drop anything on its own.</p><p>One test passes an empty array. Decide what your component should do with it before you run the tests.</p>`,
+        analogy:
+          "Sorting the post. First you throw out the junk mail (filter), then you put what is left into pigeonholes (map). Doing it in one pass means junk ends up in a pigeonhole.",
+        docLinks: [
+          {
+            label: "React.dev — Rendering lists",
+            url: "https://react.dev/learn/rendering-lists",
+            type: "js-concept",
+          },
+          {
+            label: "MDN: Array.prototype.filter()",
+            url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
+            type: "js-method",
+          },
+        ],
+        infoBoxes: [
+          {
+            variant: "standard",
+            title: "Web Standard",
+            body: "A <code>&lt;ul&gt;</code> may only contain <code>&lt;li&gt;</code> elements as children. Screen readers announce the list and its item count from that structure, so wrapping items in stray <code>&lt;div&gt;</code>s breaks the announcement even though it looks identical on screen.",
+          },
+          {
+            variant: "tip",
+            title: "Tip — keys come from the data, not the loop",
+            body: "Use <code>key={product.id}</code>, not the map index. When the filtered list changes, indexes shift and React reuses the wrong DOM node — the classic symptom is a checkbox or input staying with the wrong row.",
+          },
+        ],
+      },
+      config: {
+        type: "code-challenge",
+        functionName: "ProductList",
+        componentName: "ProductList",
+        language: "react",
+        starterCode:
+          "function ProductList({ products }) {\n  // 1. Keep only the products where inStock is true.\n  // 2. Turn each remaining product into an <li> showing its name.\n  // 3. Give every <li> a key from the product's id.\n  return (\n    <ul>\n    </ul>\n  );\n}\n",
+        tests: [
+          {
+            name: "renders one item per in-stock product",
+            render: {
+              props: {
+                products: [
+                  { id: 1, name: "Keyboard", inStock: true },
+                  { id: 2, name: "Mouse", inStock: true },
+                ],
+              },
+              assert: "return container.querySelectorAll('li').length;",
+            },
+            expected: 2,
+          },
+          {
+            name: "leaves out the out-of-stock ones",
+            render: {
+              props: {
+                products: [
+                  { id: 1, name: "Keyboard", inStock: true },
+                  { id: 2, name: "Mouse", inStock: false },
+                  { id: 3, name: "Monitor", inStock: true },
+                ],
+              },
+              assert: "return [...container.querySelectorAll('li')].map(li => li.textContent);",
+            },
+            expected: ["Keyboard", "Monitor"],
+          },
+          {
+            name: "renders an empty list when nothing is in stock",
+            render: {
+              props: { products: [{ id: 1, name: "Keyboard", inStock: false }] },
+              assert: "return container.querySelectorAll('li').length;",
+            },
+            expected: 0,
+          },
+          {
+            name: "survives an empty array",
+            render: { props: { products: [] }, assert: "return container.querySelectorAll('li').length;" },
+            expected: 0,
+          },
+          {
+            name: "still uses a real <ul>",
+            render: { props: { products: [{ id: 1, name: "Keyboard", inStock: true }] }, assert: "return container.querySelector('ul') !== null;" },
+            expected: true,
+          },
+        ],
+      },
+      validation: { type: "tests-pass", criteria: {} },
+      hints: [
+        "Filter first, then map: <code>products.filter((p) => p.inStock).map(...)</code>",
+        "Each item: <code>&lt;li key={p.id}&gt;{p.name}&lt;/li&gt;</code>",
+        "Put the whole expression inside the <code>&lt;ul&gt;</code> in braces. An empty array maps to an empty list all on its own — you do not need a special case for it.",
+      ],
+    },
   ],
 };

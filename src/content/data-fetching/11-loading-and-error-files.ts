@@ -100,7 +100,7 @@ export default function Error({ error, reset }) {
         docLinks: [
           {
             label: "Next.js — Caching and revalidating",
-            url: "https://nextjs.org/docs/app/getting-started/fetching-data#caching-data",
+            url: "https://nextjs.org/docs/app/getting-started/fetching-data",
             type: "js-concept",
           },
         ],

@@ -35,7 +35,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: link rel=\"stylesheet\"",
-            url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/stylesheet",
+            url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/link",
             type: "html-attribute",
           },
         ],

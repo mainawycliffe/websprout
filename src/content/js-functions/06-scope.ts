@@ -69,7 +69,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Function scope",
-            url: "https://developer.mozilla.org/en-US/docs/Glossary/Function_scope",
+            url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#function_scopes_and_closures",
             type: "js-concept",
           },
         ],

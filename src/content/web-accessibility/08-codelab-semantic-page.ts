@@ -469,7 +469,7 @@ You have now converted an inaccessible div-soup page into a fully accessible sem
         docLinks: [
           {
             label: "MDN: Skip navigation",
-            url: "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Operable#skip_navigation_links",
+            url: "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Operable",
             type: "html-concept",
           },
           {

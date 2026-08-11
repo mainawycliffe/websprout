@@ -94,15 +94,16 @@ export default function AddToCart() {
     },
     {
       id: "server-or-client",
-      type: "gap-fill",
+      type: "quiz",
+      difficulty: "advanced",
       instruction: {
         heading: "Server or client?",
-        body: `<p>Decide where each component should run. Answer with <code>server</code> or <code>client</code>.</p>`,
+        body: `<p>You have inherited four components from a real online store, and the team wants to ship less JavaScript. <strong>Select every one that must be a Client Component</strong> — every one that would actually break if it only ever ran on the server.</p><p>Work it out rather than guessing: for each component, ask the deciding question below and follow the consequence. Two of the four are traps in opposite directions — one looks server-ish but is not, and one looks harmless to move but must never leave the server.</p>`,
         infoBoxes: [
           {
             variant: "tip",
             title: "Tip — the deciding question",
-            body: `Ask: "does this need state, effects, events, or browser-only APIs?" If yes → client. If it just fetches and displays data → leave it as a server component.`,
+            body: `Ask: "does this need state, effects, event handlers, or browser-only APIs?" If yes, it must be a Client Component. If it only fetches data and displays it, leave it on the server — you ship less JavaScript and the page paints sooner.`,
           },
         ],
         docLinks: [
@@ -114,20 +115,43 @@ export default function AddToCart() {
         ],
       },
       config: {
-        type: "gap-fill",
-        template: `A blog article that just displays text  ->  {{a}} component
-A button with onClick + useState         ->  {{b}} component
-A page that reads a secret API key        ->  {{c}} component`,
-        gaps: [
-          { id: "a", placeholder: "server or client", acceptedAnswers: ["server"], caseSensitive: false },
-          { id: "b", placeholder: "server or client", acceptedAnswers: ["client"], caseSensitive: false },
-          { id: "c", placeholder: "server or client", acceptedAnswers: ["server"], caseSensitive: false },
+        type: "quiz",
+        mode: "multiple",
+        options: [
+          {
+            id: "article",
+            text: "A product description that renders text fetched from the CMS",
+            correct: false,
+            explanation:
+              "No state, no events, no browser APIs — just data in, HTML out. Leave it on the server and you ship <strong>zero</strong> JavaScript for it. Marking this <code>\"use client\"</code> would cost bundle size and buy nothing.",
+          },
+          {
+            id: "cart",
+            text: 'An "Add to cart" button using <code>useState</code> and <code>onClick</code>',
+            correct: true,
+            explanation:
+              "<code>useState</code> and <code>onClick</code> only exist once the component is running in a browser. Without <code>\"use client\"</code> this fails at build time — the error is loud and immediate, which makes it the easiest of the four to get right.",
+          },
+          {
+            id: "secret",
+            text: "A component that reads <code>process.env.STRIPE_SECRET_KEY</code> to fetch orders",
+            correct: false,
+            explanation:
+              "This one must stay on the <strong>server</strong> — and the cost of getting it wrong is the worst on the list. Adding <code>\"use client\"</code> here bundles your secret key into JavaScript that every single visitor can read in devtools. When you are unsure, ask what leaks if this runs in the browser.",
+          },
+          {
+            id: "theme",
+            text: "A dark-mode toggle that reads <code>localStorage</code>",
+            correct: true,
+            explanation:
+              "<code>localStorage</code> is a browser API — it simply does not exist during server rendering, so this needs <code>\"use client\"</code>. It also needs a guard for the very first render, before <code>localStorage</code> is readable, or the server and client HTML disagree and React reports a hydration mismatch.",
+          },
         ],
       },
-      validation: { type: "exact-match", criteria: {} },
+      validation: { type: "quiz-answer", criteria: {} },
       hints: [
-        "Displaying text needs no interactivity → it can stay on the server.",
-        "onClick + useState require the browser → client. Secrets must stay off the browser → server.",
+        "Two of the four need the browser. Look for <code>useState</code>, event handlers, and browser-only globals like <code>localStorage</code>.",
+        "The secret-key one is the trap — it is the <em>most</em> server-only component on the list, not a client one.",
       ],
     },
   ],

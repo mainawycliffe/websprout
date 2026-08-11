@@ -49,7 +49,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "JavaScript naming conventions",
-            url: "https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide/JavaScript#functions_and_objects",
+            url: "https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide/JavaScript",
             type: "js-concept",
           },
         ],

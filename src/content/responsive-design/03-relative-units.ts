@@ -119,7 +119,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Viewport units",
-            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/length#viewport-percentage_lengths",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/length",
             type: "css-concept",
           },
         ],

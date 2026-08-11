@@ -4,10 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import MobileNav from './MobileNav';
+import RankChip from '@/components/ui/RankChip';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'Modules', href: '/#modules' },
+  { label: 'Practice', href: '/practice' },
   { label: 'Playground', href: '/playground' },
 ];
 
@@ -68,6 +70,7 @@ export default function Header({ title, backHref, rightContent, showNav = true }
         )}
 
         <div className='flex items-center gap-2'>
+          {showNav && <RankChip />}
           <a
             href={GITHUB_URL}
             target='_blank'

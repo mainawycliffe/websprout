@@ -8,10 +8,20 @@ import type {
   FreeEditConfig,
   ExplanationConfig,
   JsConsoleConfig,
+  QuizConfig,
+  CodeChallengeConfig,
 } from "@/types/lesson";
-import type { ConsoleEntry } from "@/lib/js-sandbox";
+import type { ConsoleEntry, TestRunResult } from "@/lib/js-sandbox";
 import { useLessonProgress } from "@/hooks/useLessonProgress";
-import { validateStep, getHintForStep, buildCodeFromGaps } from "@/lib/lesson-engine";
+import {
+  validateStep,
+  getHintForStep,
+  buildCodeFromGaps,
+  applyQuizSelection,
+  isQuizCorrect,
+  EMPTY_QUIZ_STATE,
+  type QuizState,
+} from "@/lib/lesson-engine";
 import { getHtmlDiagnostics } from "@/lib/html-diagnostics";
 import { getCssDiagnostics } from "@/lib/css-diagnostics";
 import { getModule, getNextLesson } from "@/content/modules";
@@ -23,6 +33,8 @@ import CodeEditor from "@/components/editor/CodeEditor";
 import GapFillEditor from "@/components/editor/GapFillEditor";
 import JsConsole from "@/components/editor/JsConsole";
 import InteractivePreview from "@/components/editor/InteractivePreview";
+import QuizQuestion from "@/components/editor/QuizQuestion";
+import CodeChallenge from "@/components/editor/CodeChallenge";
 
 interface JavaScriptLessonProps {
   moduleId: string;
@@ -47,6 +59,8 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
   const [feedback, setFeedback] = useState<{ valid: boolean; message: string } | null>(null);
   const [attemptCount, setAttemptCount] = useState(0);
   const [consoleOutput, setConsoleOutput] = useState<ConsoleEntry[]>([]);
+  const [quizState, setQuizState] = useState<QuizState>(EMPTY_QUIZ_STATE);
+  const [testRun, setTestRun] = useState<TestRunResult | null>(null);
   const [showComplete, setShowComplete] = useState(false);
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -64,6 +78,9 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
     }
     if (step?.config.type === "js-console" && !code) {
       return (step.config as JsConsoleConfig).starterCode;
+    }
+    if (step?.config.type === "code-challenge" && !code) {
+      return (step.config as CodeChallengeConfig).starterCode;
     }
     return code;
   }, [step, gapValues, code]);
@@ -126,6 +143,20 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
     setConsoleOutput(output);
   }, []);
 
+  const handleQuizSelect = useCallback((optionId: string) => {
+    if (step?.config.type !== "quiz") return;
+    const config = step.config as QuizConfig;
+    setQuizState((prev) => applyQuizSelection(config, prev, { kind: "select", optionId }));
+    setFeedback(null);
+  }, [step]);
+
+  const handleQuizCheck = useCallback(() => {
+    if (step?.config.type !== "quiz") return;
+    const config = step.config as QuizConfig;
+    setQuizState((prev) => applyQuizSelection(config, prev, { kind: "check" }));
+    setFeedback(null);
+  }, [step]);
+
   const isLastStep = currentStep === lesson.steps.length - 1;
   const nextLesson = useMemo(() => getNextLesson(moduleId, lesson.slug), [moduleId, lesson.slug]);
 
@@ -153,6 +184,8 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
       code: displayCode,
       gapValues,
       consoleOutput: consoleOutput.map((e) => e.args.join(" ")),
+      quizSelection: quizState.selected,
+      testRun,
     };
 
     const result = validateStep(step, input);
@@ -170,12 +203,14 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
           setGapValues({});
           setCode("");
           setConsoleOutput([]);
+          setQuizState(EMPTY_QUIZ_STATE);
+          setTestRun(null);
         }
       }, 1000);
     } else {
       setAttemptCount((prev) => prev + 1);
     }
-  }, [step, currentStep, isLastStep, completedSteps, displayCode, gapValues, consoleOutput, completeStep, goToNextStep]);
+  }, [step, currentStep, isLastStep, completedSteps, displayCode, gapValues, consoleOutput, quizState.selected, testRun, completeStep, goToNextStep]);
 
   const handlePrev = useCallback(() => {
     goToPrevStep();
@@ -184,6 +219,8 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
     setGapValues({});
     setCode("");
     setConsoleOutput([]);
+    setQuizState(EMPTY_QUIZ_STATE);
+    setTestRun(null);
   }, [goToPrevStep]);
 
   const handleStepClick = useCallback(
@@ -194,21 +231,36 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
       setGapValues({});
       setCode("");
       setConsoleOutput([]);
+      setQuizState(EMPTY_QUIZ_STATE);
+      setTestRun(null);
     },
     [goToStep]
   );
 
+  // Wrong quiz clicks count toward the existing "hint after 2 failures" rule.
+  const effectiveAttempts = attemptCount + quizState.wrongAttempts;
+
   const hint = useMemo(() => {
-    if (!step || attemptCount < 2) return null;
-    return getHintForStep(step, attemptCount - 2);
-  }, [step, attemptCount]);
+    if (!step || effectiveAttempts < 2) return null;
+    return getHintForStep(step, effectiveAttempts - 2);
+  }, [step, effectiveAttempts]);
 
   const moduleTitle = useMemo(() => getModule(moduleId)?.title ?? moduleId, [moduleId]);
+
+  const allTestsPass =
+    testRun !== null &&
+    !testRun.compileError &&
+    testRun.results.length > 0 &&
+    testRun.results.every((r) => r.passed);
 
   const canProgress =
     step?.type === "explanation" ||
     completedSteps.has(currentStep) ||
-    feedback?.valid === true;
+    feedback?.valid === true ||
+    (step?.config.type === "quiz" &&
+      quizState.revealed &&
+      isQuizCorrect(step.config as QuizConfig, quizState.selected)) ||
+    (step?.config.type === "code-challenge" && allTestsPass);
 
   if (!step && !showComplete) return null;
 
@@ -255,6 +307,7 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
               instruction={step!.instruction}
               hint={hint}
               feedback={feedback}
+              difficulty={step!.difficulty}
             />
 
             {visualizer && (
@@ -337,6 +390,26 @@ export default function JavaScriptLesson({ moduleId, lesson, initialStep, visual
                       onOutput={handleConsoleOutput}
                     />
                   </div>
+                )}
+
+                {step!.type === "quiz" && step!.config.type === "quiz" && (
+                  <QuizQuestion
+                    config={step!.config as QuizConfig}
+                    state={quizState}
+                    onSelect={handleQuizSelect}
+                    onCheck={handleQuizCheck}
+                    seed={step!.id}
+                  />
+                )}
+
+                {step!.type === "code-challenge" && step!.config.type === "code-challenge" && (
+                  <CodeChallenge
+                    config={step!.config as CodeChallengeConfig}
+                    code={displayCode}
+                    onCodeChange={handleCodeChange}
+                    run={testRun}
+                    onRun={setTestRun}
+                  />
                 )}
               </motion.div>
             </AnimatePresence>

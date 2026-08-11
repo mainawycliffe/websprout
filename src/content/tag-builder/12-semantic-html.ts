@@ -265,7 +265,7 @@ export const lesson: Lesson = {
           },
           {
             label: "ARIA landmark roles",
-            url: "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#landmark_roles",
+            url: "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles",
             type: "html-concept",
           },
         ],

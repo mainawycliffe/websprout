@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "verify:content": "node --experimental-strip-types --import ./scripts/register-loader.mjs scripts/verify-content.ts",
+    "verify:links": "node --experimental-strip-types --import ./scripts/register-loader.mjs scripts/verify-links.ts"
   },
   "dependencies": {
     "@codemirror/lang-css": "^6.3.1",

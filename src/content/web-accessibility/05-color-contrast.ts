@@ -80,7 +80,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Use of color",
-            url: "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#use_of_color",
+            url: "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable",
             type: "html-concept",
           },
         ],

@@ -139,5 +139,66 @@ export const lesson: Lesson = {
         'Use it: <code>&lt;Movie title="Dune" year={2021} /&gt;</code> — string in quotes, number in braces.',
       ],
     },
+    {
+      id: "props-challenge",
+      type: "code-challenge",
+      difficulty: "easy",
+      instruction: {
+        heading: "Challenge: a badge that reads its own props",
+        body: `<p>Write a component called <code>Badge</code> that takes two props, <code>label</code> and <code>count</code>, and renders exactly this text: the label, a space, then the count in parentheses — for example <code>Inbox (3)</code>.</p><p>Then solve the part that is <em>not</em> spelled out for you: when <code>count</code> is <code>0</code>, the badge should render just the label with no parentheses at all — <code>Inbox</code>. Work out where that decision belongs in your JSX before you start typing.</p><p>Click <strong>Run Tests</strong> and the tests will tell you which case you have not handled yet.</p>`,
+        analogy:
+          "A name badge at a conference. The template is printed once; the name and company are filled in per person. Same component, different props.",
+        docLinks: [
+          {
+            label: "React.dev — Passing props to a component",
+            url: "https://react.dev/learn/passing-props-to-a-component",
+            type: "js-concept",
+          },
+          {
+            label: "React.dev — Conditional rendering",
+            url: "https://react.dev/learn/conditional-rendering",
+            type: "js-concept",
+          },
+        ],
+        infoBoxes: [
+          {
+            variant: "tip",
+            title: "Tip — component names are capitalised for a reason",
+            body: "JSX treats a lowercase name as an HTML tag, so <code>&lt;badge /&gt;</code> becomes a literal <code>&lt;badge&gt;</code> element instead of your component. The capital <code>B</code> in <code>Badge</code> is what tells React it is yours.",
+          },
+        ],
+      },
+      config: {
+        type: "code-challenge",
+        functionName: "Badge",
+        componentName: "Badge",
+        language: "react",
+        starterCode:
+          "function Badge({ label, count }) {\n  // Return the label, then the count in parentheses: \"Inbox (3)\"\n  // ...but when count is 0, return just the label: \"Inbox\"\n  return <span></span>;\n}\n",
+        tests: [
+          {
+            name: "shows the label and the count",
+            render: { props: { label: "Inbox", count: 3 }, assert: "return container.textContent;" },
+            expected: "Inbox (3)",
+          },
+          {
+            name: "works with different props",
+            render: { props: { label: "Drafts", count: 12 }, assert: "return container.textContent;" },
+            expected: "Drafts (12)",
+          },
+          {
+            name: "hides the parentheses when the count is 0",
+            render: { props: { label: "Inbox", count: 0 }, assert: "return container.textContent;" },
+            expected: "Inbox",
+          },
+        ],
+      },
+      validation: { type: "tests-pass", criteria: {} },
+      hints: [
+        "Read both props out of the parameter: <code>function Badge({ label, count })</code>.",
+        "Build the common case first: <code>return &lt;span&gt;{label} ({count})&lt;/span&gt;;</code> — then run the tests and see which one fails.",
+        "For the zero case, decide before returning: <code>if (count === 0) return &lt;span&gt;{label}&lt;/span&gt;;</code>",
+      ],
+    },
   ],
 };

@@ -19,7 +19,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "MDN: Event delegation",
-            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events#event_delegation",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events",
             type: "js-concept",
           },
           {

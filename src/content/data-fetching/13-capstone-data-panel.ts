@@ -172,7 +172,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "REST Countries — all endpoints",
-            url: "https://restcountries.com/#endpoints-all",
+            url: "https://restcountries.com/",
             type: "js-concept",
           },
         ],

@@ -2,10 +2,18 @@
 
 import { useCallback, useDeferredValue, useMemo, useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import type { Lesson, GapFillConfig, FreeEditConfig, ExplanationConfig } from "@/types/lesson";
+import type { Lesson, GapFillConfig, FreeEditConfig, ExplanationConfig, QuizConfig } from "@/types/lesson";
 import { useLessonProgress } from "@/hooks/useLessonProgress";
 import { useCodeValidation } from "@/hooks/useCodeValidation";
-import { validateStep, getHintForStep, buildCodeFromGaps } from "@/lib/lesson-engine";
+import {
+  validateStep,
+  getHintForStep,
+  buildCodeFromGaps,
+  applyQuizSelection,
+  isQuizCorrect,
+  EMPTY_QUIZ_STATE,
+  type QuizState,
+} from "@/lib/lesson-engine";
 import { getModule, getNextLesson } from "@/content/modules";
 import Link from "next/link";
 import LessonStepper from "@/components/layout/LessonStepper";
@@ -14,6 +22,7 @@ import InstructionPanel from "@/components/layout/InstructionPanel";
 import CodeEditor from "@/components/editor/CodeEditor";
 import GapFillEditor from "@/components/editor/GapFillEditor";
 import HtmlPreview from "@/components/editor/HtmlPreview";
+import QuizQuestion from "@/components/editor/QuizQuestion";
 
 interface ContentLessonProps {
   moduleId: string;
@@ -37,6 +46,7 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
   const [gapValues, setGapValues] = useState<Record<string, string>>({});
   const [feedback, setFeedback] = useState<{ valid: boolean; message: string } | null>(null);
   const [attemptCount, setAttemptCount] = useState(0);
+  const [quizState, setQuizState] = useState<QuizState>(EMPTY_QUIZ_STATE);
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const saveCodeRef = useRef(saveCode);
@@ -79,6 +89,20 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
     }, 1000);
   }, []);
 
+  const handleQuizSelect = useCallback((optionId: string) => {
+    if (step?.config.type !== "quiz") return;
+    const config = step.config as QuizConfig;
+    setQuizState((prev) => applyQuizSelection(config, prev, { kind: "select", optionId }));
+    setFeedback(null);
+  }, [step]);
+
+  const handleQuizCheck = useCallback(() => {
+    if (step?.config.type !== "quiz") return;
+    const config = step.config as QuizConfig;
+    setQuizState((prev) => applyQuizSelection(config, prev, { kind: "check" }));
+    setFeedback(null);
+  }, [step]);
+
   const isLastStep = currentStep === lesson.steps.length - 1;
   const [showComplete, setShowComplete] = useState(false);
 
@@ -108,6 +132,7 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
     const input: Record<string, unknown> = {
       code: displayCode,
       gapValues,
+      quizSelection: quizState.selected,
     };
 
     const result = validateStep(step, input);
@@ -124,12 +149,13 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
           setAttemptCount(0);
           setGapValues({});
           setCode("");
+          setQuizState(EMPTY_QUIZ_STATE);
         }
       }, 1000);
     } else {
       setAttemptCount((prev) => prev + 1);
     }
-  }, [step, currentStep, isLastStep, completedSteps, displayCode, gapValues, completeStep, goToNextStep]);
+  }, [step, currentStep, isLastStep, completedSteps, displayCode, gapValues, quizState.selected, completeStep, goToNextStep]);
 
   const handlePrev = useCallback(() => {
     goToPrevStep();
@@ -137,6 +163,7 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
     setAttemptCount(0);
     setGapValues({});
     setCode("");
+    setQuizState(EMPTY_QUIZ_STATE);
   }, [goToPrevStep]);
 
   const handleStepClick = useCallback(
@@ -146,19 +173,26 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
       setAttemptCount(0);
       setGapValues({});
       setCode("");
+      setQuizState(EMPTY_QUIZ_STATE);
     },
     [goToStep]
   );
 
+  // Wrong quiz clicks count toward the existing "hint after 2 failures" rule.
+  const effectiveAttempts = attemptCount + quizState.wrongAttempts;
+
   const hint = useMemo(() => {
-    if (!step || attemptCount < 2) return null;
-    return getHintForStep(step, attemptCount - 2);
-  }, [step, attemptCount]);
+    if (!step || effectiveAttempts < 2) return null;
+    return getHintForStep(step, effectiveAttempts - 2);
+  }, [step, effectiveAttempts]);
 
   const canProgress =
     step?.type === "explanation" ||
     completedSteps.has(currentStep) ||
-    feedback?.valid === true;
+    feedback?.valid === true ||
+    (step?.config.type === "quiz" &&
+      quizState.revealed &&
+      isQuizCorrect(step.config as QuizConfig, quizState.selected));
 
   const moduleTitle = useMemo(() => getModule(moduleId)?.title ?? moduleId, [moduleId]);
 
@@ -207,6 +241,7 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
               instruction={step.instruction}
               hint={hint}
               feedback={feedback}
+              difficulty={step.difficulty}
             />
 
             {visualizer && (
@@ -263,6 +298,16 @@ export default function ContentLesson({ moduleId, lesson, initialStep, visualize
                     />
                     <HtmlPreview html={displayCode} />
                   </div>
+                )}
+
+                {step.type === "quiz" && step.config.type === "quiz" && (
+                  <QuizQuestion
+                    config={step.config as QuizConfig}
+                    state={quizState}
+                    onSelect={handleQuizSelect}
+                    onCheck={handleQuizCheck}
+                    seed={step.id}
+                  />
                 )}
               </motion.div>
             </AnimatePresence>

@@ -1,4 +1,5 @@
-import type { Step, GapFillConfig, FreeEditConfig, ChallengeConfig, BoxModelValues, JsConsoleConfig } from "@/types/lesson";
+import type { Step, GapFillConfig, FreeEditConfig, ChallengeConfig, BoxModelValues, JsConsoleConfig, QuizConfig } from "@/types/lesson";
+import type { TestRunResult } from "@/lib/js-sandbox";
 
 export type ValidationResult = {
   valid: boolean;
@@ -30,6 +31,12 @@ export function validateStep(step: Step, userInput: Record<string, unknown>): Va
 
     case "console-output-match":
       return validateConsoleOutputMatch(step, userInput);
+
+    case "quiz-answer":
+      return validateQuizAnswer(step, userInput);
+
+    case "tests-pass":
+      return validateTestsPass(step, userInput);
 
     default:
       return { valid: false, message: "Unknown validation type" };
@@ -211,6 +218,133 @@ function validateConsoleOutputMatch(step: Step, userInput: Record<string, unknow
   }
 
   return { valid: true, message: "Output matches perfectly!" };
+}
+
+function validateQuizAnswer(step: Step, userInput: Record<string, unknown>): ValidationResult {
+  if (step.config.type !== "quiz") {
+    return { valid: false, message: "Invalid step config" };
+  }
+  const config = step.config as QuizConfig;
+  const selected = (userInput.quizSelection as string[] | undefined) ?? [];
+
+  if (selected.length === 0) {
+    return { valid: false, message: "Pick an answer to continue." };
+  }
+
+  const correctIds = new Set(config.options.filter((o) => o.correct).map((o) => o.id));
+  const picked = new Set(selected);
+
+  const missed = [...correctIds].filter((id) => !picked.has(id));
+  const extra = [...picked].filter((id) => !correctIds.has(id));
+
+  if (missed.length === 0 && extra.length === 0) {
+    return {
+      valid: true,
+      message: (step.validation.criteria.successMessage as string) ?? "Correct!",
+    };
+  }
+
+  if (config.mode === "multiple") {
+    if (extra.length > 0 && missed.length === 0) {
+      return {
+        valid: false,
+        message: "You found all the right ones, but one of your picks doesn't belong. Read its explanation.",
+      };
+    }
+    if (extra.length === 0) {
+      return {
+        valid: false,
+        message: `Everything you picked is right — but you're missing ${missed.length} more.`,
+      };
+    }
+    return { valid: false, message: "Not quite. Read the explanations under the options you picked." };
+  }
+
+  return {
+    valid: false,
+    message: (step.validation.criteria.failureMessage as string) ?? "Not quite — read the explanation and try another one.",
+  };
+}
+
+function validateTestsPass(_step: Step, userInput: Record<string, unknown>): ValidationResult {
+  const run = userInput.testRun as TestRunResult | undefined;
+
+  if (!run || (run.results.length === 0 && !run.compileError)) {
+    return { valid: false, message: 'Click "Run Tests" to check your solution.' };
+  }
+
+  if (run.compileError) {
+    return { valid: false, message: run.compileError };
+  }
+
+  const failed = run.results.filter((r) => !r.passed);
+  if (failed.length === 0) {
+    return { valid: true, message: `All ${run.results.length} tests pass. Nice work!` };
+  }
+
+  const first = failed[0];
+  const detail = first.error
+    ? `it threw: ${first.error}`
+    : first.hidden
+      ? `it returned ${first.actual}`
+      : `expected ${first.expected}, got ${first.actual}`;
+
+  return {
+    valid: false,
+    message: `${run.results.length - failed.length}/${run.results.length} passing. "${first.name}" — ${detail}`,
+  };
+}
+
+/* ---------------- quiz interaction state ---------------- */
+
+export interface QuizState {
+  selected: string[];
+  revealed: boolean;
+  wrongAttempts: number;
+}
+
+export const EMPTY_QUIZ_STATE: QuizState = { selected: [], revealed: false, wrongAttempts: 0 };
+
+export function isQuizCorrect(config: QuizConfig, selected: string[]): boolean {
+  const correct = config.options.filter((o) => o.correct).map((o) => o.id).sort();
+  const picked = [...new Set(selected)].sort();
+  return correct.length === picked.length && correct.every((id, i) => id === picked[i]);
+}
+
+export type QuizAction = { kind: "select"; optionId: string } | { kind: "check" };
+
+/**
+ * Pure transition, shared by every consumer so the reveal rules can't drift.
+ *
+ * single / true-false — one click selects AND reveals. A correct answer locks;
+ * a wrong one stays retryable without giving away the right one.
+ * multiple — clicks toggle and clear any prior reveal, so a wrong check forces a
+ * re-check rather than one-toggle-at-a-time brute force.
+ */
+export function applyQuizSelection(
+  config: QuizConfig,
+  state: QuizState,
+  action: QuizAction
+): QuizState {
+  if (action.kind === "check") {
+    if (state.selected.length === 0) return state;
+    const ok = isQuizCorrect(config, state.selected);
+    return { ...state, revealed: true, wrongAttempts: state.wrongAttempts + (ok ? 0 : 1) };
+  }
+
+  if (config.mode === "multiple") {
+    const selected = state.selected.includes(action.optionId)
+      ? state.selected.filter((id) => id !== action.optionId)
+      : [...state.selected, action.optionId];
+    return { ...state, selected, revealed: false };
+  }
+
+  // A locked-in correct answer ignores further clicks.
+  if (state.revealed && isQuizCorrect(config, state.selected)) return state;
+
+  const selected = [action.optionId];
+  const ok = isQuizCorrect(config, selected);
+  return { selected, revealed: true, wrongAttempts: state.wrongAttempts + (ok ? 0 : 1) };
 }
 
 export function getHintForStep(step: Step, attemptCount: number): string | null {

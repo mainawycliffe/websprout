@@ -49,7 +49,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Chrome Lighthouse",
-            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/Tooling#lighthouse",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/Tooling",
             type: "html-concept",
           },
         ],
@@ -78,7 +78,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "axe-core on GitHub",
-            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/Tooling#axe_tools",
+            url: "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/Tooling",
             type: "html-concept",
           },
         ],

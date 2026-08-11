@@ -35,28 +35,54 @@ export const lesson: Lesson = {
     },
     {
       id: "z-index-predict",
-      type: "gap-fill",
+      type: "quiz",
+      difficulty: "intermediate",
       instruction: {
         heading: "Predict the output: who wins?",
-        body: "<p>Three boxes overlap. They all have <code>position: absolute</code>. Their z-index values are listed below. Fill in the letter of the box that ends up on top.</p>",
+        body: "<p>Three boxes overlap. All three have <code>position: absolute</code>, so <code>z-index</code> applies to every one of them. Which box paints on top?</p><p>Read the values before you answer — then read <em>every</em> explanation, including the ones you did not pick.</p>",
       },
       config: {
-        type: "gap-fill",
-        template:
-          '/* All three boxes overlap. Which one paints on top? */\n.box-a { z-index: 5;  }\n.box-b { z-index: 2;  }\n.box-c { z-index: 9;  }\n\n/* The box on top is: {{winner}} */',
-        gaps: [
+        type: "quiz",
+        mode: "single",
+        codeSnippet:
+          ".box-a { position: absolute; z-index: 5; }\n.box-b { position: absolute; z-index: 2; }\n.box-c { position: absolute; z-index: 9; }",
+        codeLanguage: "css",
+        options: [
           {
-            id: "winner",
-            placeholder: "letter",
-            acceptedAnswers: ["c", "box-c", ".box-c"],
-            caseSensitive: false,
+            id: "a",
+            text: "<code>.box-a</code>",
+            correct: false,
+            explanation:
+              "<code>5</code> beats <code>.box-b</code>'s <code>2</code>, but loses to <code>.box-c</code>'s <code>9</code>. So <code>.box-a</code> lands in the middle of the stack, not on top.",
+          },
+          {
+            id: "b",
+            text: "<code>.box-b</code>",
+            correct: false,
+            explanation:
+              "<code>2</code> is the smallest value here, so <code>.box-b</code> sits at the <em>bottom</em> — it is the one most likely to be hidden behind the others.",
+          },
+          {
+            id: "c",
+            text: "<code>.box-c</code>",
+            correct: true,
+            explanation:
+              "Correct — <code>9</code> is the highest value, so <code>.box-c</code> paints on top. Within a single stacking context the browser sorts by <code>z-index</code> and paints the highest last, which is why it ends up visually in front.",
+          },
+          {
+            id: "last",
+            text: "<code>.box-c</code>, but only because it is last in the HTML",
+            correct: false,
+            explanation:
+              "Right box, wrong reason — and the reason is the part that matters. Source order <em>is</em> the tiebreaker, but only when <code>z-index</code> values are <strong>equal</strong>. Here they differ, so <code>z-index</code> decides on its own and source order never comes into it. Give all three the same <code>z-index</code> and then, and only then, the last one in the HTML would win.",
           },
         ],
+        shuffle: true,
       },
-      validation: { type: "exact-match", criteria: { gaps: ["winner"] } },
+      validation: { type: "quiz-answer", criteria: {} },
       hints: [
-        "Higher z-index paints on top.",
-        "Compare 5, 2, and 9. The biggest number wins.",
+        "Higher <code>z-index</code> paints on top.",
+        "Compare <code>5</code>, <code>2</code>, and <code>9</code>. The biggest number wins — but make sure you can say <em>why</em>.",
       ],
     },
     {

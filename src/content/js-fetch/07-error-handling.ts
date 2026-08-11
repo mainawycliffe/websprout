@@ -25,7 +25,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Fetch API - Checking that the fetch was successful",
-            url: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_that_the_fetch_was_successful",
+            url: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
             type: "js-concept",
           },
         ],

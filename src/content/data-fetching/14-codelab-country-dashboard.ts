@@ -660,7 +660,7 @@ git push -u origin main
         docLinks: [
           {
             label: "REST Countries — all fields & endpoints",
-            url: "https://restcountries.com/#endpoints-all",
+            url: "https://restcountries.com/",
             type: "js-concept",
           },
         ],

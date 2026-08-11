@@ -60,7 +60,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Using Fetch - Supplying request options",
-            url: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#supplying_request_options",
+            url: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
             type: "js-concept",
           },
         ],

@@ -75,7 +75,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "React.dev — Cleanup function",
-            url: "https://react.dev/reference/react/useEffect#disconnecting-from-a-server",
+            url: "https://react.dev/reference/react/useEffect",
             type: "js-concept",
           },
         ],

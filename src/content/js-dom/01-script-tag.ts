@@ -44,7 +44,7 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Script: src attribute",
-            url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/src",
+            url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script",
             type: "js-concept",
           },
         ],
@@ -111,12 +111,12 @@ export const lesson: Lesson = {
         docLinks: [
           {
             label: "Script: defer attribute",
-            url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/defer",
+            url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script#defer",
             type: "js-concept",
           },
           {
             label: "Script: async attribute",
-            url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/async",
+            url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script#async",
             type: "js-concept",
           },
         ],

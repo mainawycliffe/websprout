@@ -1,23 +1,28 @@
 'use client';
 
 import Card from '@/components/ui/Card';
+import DifficultyBadge from '@/components/ui/DifficultyBadge';
 import DocLinks from '@/components/ui/DocLinks';
 import InfoBox from '@/components/ui/InfoBox';
 import { renderLessonHtml, renderLessonInlineHtml } from '@/lib/lesson-html';
-import type { StepInstruction } from '@/types/lesson';
+import type { DifficultyLevel, StepInstruction } from '@/types/lesson';
 import { AnimatePresence, motion } from 'motion/react';
 
 interface InstructionPanelProps {
   instruction: StepInstruction;
   hint?: string | null;
   feedback?: { valid: boolean; message: string } | null;
+  difficulty?: DifficultyLevel;
 }
 
-export default function InstructionPanel({ instruction, hint, feedback }: InstructionPanelProps) {
+export default function InstructionPanel({ instruction, hint, feedback, difficulty }: InstructionPanelProps) {
   return (
     <Card className='border border-primary/20'>
       <div className='flex flex-col gap-3'>
-        <h2 className='text-xl font-bold text-text'>{instruction.heading}</h2>
+        <div className='flex items-start justify-between gap-3'>
+          <h2 className='text-xl font-bold text-text'>{instruction.heading}</h2>
+          {difficulty && <DifficultyBadge level={difficulty} className='mt-1 shrink-0' />}
+        </div>
         <div
           className='text-base text-text-muted leading-relaxed flex flex-col gap-2 [&>p]:my-0 [&>ul]:list-disc [&>ul]:list-inside [&>ul]:flex [&>ul]:flex-col [&>ul]:gap-1 [&>ol]:list-decimal [&>ol]:list-inside [&>ol]:flex [&>ol]:flex-col [&>ol]:gap-1 [&_code]:bg-secondary-light/20 [&_code]:px-1 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono'
           dangerouslySetInnerHTML={{

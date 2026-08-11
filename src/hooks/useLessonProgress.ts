@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useIndexedDB } from "./useIndexedDB";
+import { useGamification } from "./useGamification";
+import { getModule } from "@/content/modules";
 import type { Lesson } from "@/types/lesson";
 
 // Capture the native replaceState before Next.js patches it.
@@ -12,7 +14,8 @@ const nativeReplaceState =
     : undefined;
 
 export function useLessonProgress(moduleId: string, lesson: Lesson, initialStep: number = 0) {
-  const { isReady, saveProgress, getProgress } = useIndexedDB();
+  const { isReady, saveProgress, getProgress, getModuleProgress } = useIndexedDB();
+  const { award } = useGamification();
   const clampedInitial = Math.max(0, Math.min(initialStep, lesson.steps.length - 1));
   const [currentStep, setCurrentStep] = useState(clampedInitial);
   const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
@@ -41,23 +44,56 @@ export function useLessonProgress(moduleId: string, lesson: Lesson, initialStep:
 
   const completeStep = useCallback(
     (stepIndex: number) => {
-      setCompletedSteps((prev) => {
-        const next = new Set(prev);
-        next.add(stepIndex);
+      // Everything here runs OUTSIDE a state updater on purpose. StrictMode
+      // double-invokes updaters with the same `prev`, so a side effect placed
+      // inside one fires twice — which previously paid XP twice per step.
+      if (completedStepsRef.current.has(stepIndex)) return;
 
-        // Save to IndexedDB
-        saveProgress({
-          lessonId: lesson.id,
-          moduleId,
-          completedSteps: Array.from(next),
-          savedCode: savedCodeRef.current,
-          lastAccessedAt: Date.now(),
-        });
+      const next = new Set(completedStepsRef.current);
+      next.add(stepIndex);
+      // Updated eagerly so a second call in the same tick is a no-op, before
+      // any re-render has had a chance to refresh the ref.
+      completedStepsRef.current = next;
+      setCompletedSteps(next);
 
-        return next;
+      saveProgress({
+        lessonId: lesson.id,
+        moduleId,
+        completedSteps: Array.from(next),
+        savedCode: savedCodeRef.current,
+        lastAccessedAt: Date.now(),
       });
+
+      award({ kind: "lesson-step" });
+
+      if (next.size === lesson.steps.length) {
+        // Finishing the last lesson of a module also unlocks Module Master, so
+        // the module's other lessons have to be checked before awarding.
+        void (async () => {
+          let moduleCompleted = false;
+          try {
+            const mod = getModule(moduleId);
+            if (mod) {
+              const records = await getModuleProgress(moduleId);
+              const finished = new Set(
+                records
+                  .filter((record) => {
+                    const target = mod.lessons.find((l) => l.id === record.lessonId);
+                    return target && record.completedSteps.length >= target.steps.length;
+                  })
+                  .map((record) => record.lessonId)
+              );
+              finished.add(lesson.id);
+              moduleCompleted = finished.size >= mod.lessons.length;
+            }
+          } catch {
+            // A failed read must not cost the student their lesson XP.
+          }
+          await award({ kind: "lesson-complete", moduleCompleted });
+        })();
+      }
     },
-    [lesson.id, moduleId, saveProgress]
+    [lesson.id, lesson.steps.length, moduleId, saveProgress, award, getModuleProgress]
   );
 
   const goToStep = useCallback(

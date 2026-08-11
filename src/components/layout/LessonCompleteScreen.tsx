@@ -3,6 +3,8 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import { useGamification } from "@/hooks/useGamification";
+import { getRank } from "@/lib/gamification";
 
 interface LessonCompleteScreenProps {
   lessonTitle: string;
@@ -15,6 +17,9 @@ export default function LessonCompleteScreen({
   moduleId,
   nextLesson,
 }: LessonCompleteScreenProps) {
+  const { player, isReady } = useGamification();
+  const rank = isReady && player ? getRank(player.xp) : null;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -43,6 +48,23 @@ export default function LessonCompleteScreen({
           You finished <strong className="text-text">{lessonTitle}</strong>
         </p>
       </div>
+
+      {rank && player && (
+        <div className="flex items-center gap-4 px-5 py-3 rounded-md bg-card border border-border/60">
+          <span className="text-2xl">{rank.current.icon}</span>
+          <div className="text-left">
+            <p className="text-sm font-semibold text-text">
+              {rank.current.name} · {player.xp} XP
+            </p>
+            <p className="text-xs text-text-muted">
+              {rank.next
+                ? `${rank.next.minXp - player.xp} XP to ${rank.next.name}`
+                : "Top rank reached"}
+              {player.currentStreak > 1 && ` · 🔥 ${player.currentStreak}-day streak`}
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="flex flex-col sm:flex-row items-center gap-3 mt-2">
         {nextLesson && (

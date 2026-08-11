@@ -286,7 +286,7 @@ The combination of hover feedback and an active-page indicator is a standard pat
           },
           {
             label: "Class selectors",
-            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selector",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors",
             type: "css-selector",
           },
         ],
